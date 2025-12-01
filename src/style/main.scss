@@ -3,6 +3,7 @@
 
 // ANCHOR: Font Imports
 @import url("https://cdn.jsdelivr.net/npm/@vercel/geist@latest/dist/font.css");
+@import url("https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap");
 
 // ANCHOR: Global Reset & Base Styles
 * {
@@ -51,7 +52,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $font-family-primary;
+    font-family: $font-family-heading;
     font-weight: $font-weight-bold;
     line-height: $line-height-snug;
     color: var(--color-text-primary);

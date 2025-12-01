@@ -150,7 +150,8 @@
 // TYPOGRAPHY
 
 // Font Stacks
-$font-family-primary: sans-serif;
+$font-family-primary: sans-serif; // Body text and paragraphs
+$font-family-heading: "Oranienbaum", serif; // Titles and headings
 $font-family-secondary:
     "SF Pro Display",
     -apple-system,
@@ -177,6 +178,7 @@ $font-size-4xl: clamp(1.8rem, 4.5vw, 2.25rem); // ~36px
 $font-size-5xl: clamp(2.2rem, 6vw, 3rem); // ~48px
 $font-size-6xl: clamp(2.8rem, 7.5vw, 3.75rem); // ~60px
 $font-size-7xl: clamp(3.2rem, 9vw, 4.5rem); // ~72px
+$font-size-7halfxl: clamp(3.8rem, 10vw, 5rem); // ~80px
 $font-size-8xl: clamp(4rem, 12vw, 6rem); // ~96px
 $font-size-9xl: clamp(5rem, 16vw, 8rem); // ~128px
 $font-size-10xl: clamp(6rem, 20vw, 10rem); // ~160px

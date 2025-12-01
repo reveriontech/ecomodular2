@@ -15,7 +15,10 @@ const Hero = () => {
                 <source src={heroVideo} type="video/mp4" />
             </video>
             <div className={styles.hero__container}>
-                <h1>Hero</h1>
+                <div className={styles.hero__title}>
+                    <p>THE FUTURE OF</p>
+                    <p>CONSTRUCTION</p>
+                </div>
             </div>
         </div>
     )
