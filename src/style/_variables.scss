@@ -1,0 +1,648 @@
+@use "sass:math";
+@use "sass:map";
+
+// Light Mode (Default) - Based on VISTAHAVEN Design
+:root {
+    // Brand Colors
+    --color-primary: #000000;
+    --color-primary-transparent: #00000079;
+    --color-primary-light: #1a1a1a;
+    --color-primary-dark: #000000;
+
+    // Gray Palette (Light Mode)
+    --color-gray-50: #f9fafb;
+    --color-gray-75: #f3f3f3;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-500: #6b7280;
+    --color-gray-600: #4b5563;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+    --color-gray-1000: #000000;
+
+    // Green Accent (for indicators and accents)
+    --color-green-50: #f0fdf4;
+    --color-green-100: #dcfce7;
+    --color-green-200: #bbf7d0;
+    --color-green-300: #86efac;
+    --color-green-400: #4ade80;
+    --color-green-500: #22c55e;
+    --color-green-600: #16a34a;
+    --color-green-700: #15803d;
+    --color-green-800: #166534;
+    --color-green-900: #14532d;
+    --color-green-1000: #052e16;
+
+    --color-green-contrast: #ffffff;
+    --color-green-surface: #f3f4f6;
+    --color-green-indicator: #22c55e;
+    --color-green-track: #e5e7eb;
+
+    --color-gray: #6b7280;
+    --color-gray-light: #9ca3af;
+
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    // Accent & Secondary
+    --color-secondary: #22c55e;
+    --color-secondary-light: #4ade80;
+    --color-secondary-dark: #16a34a;
+    --color-accent: #22c55e;
+
+    // Backgrounds - Light theme
+    --color-bg-most-primary: var(--color-primary);
+    --color-bg-most-primary-light: var(--color-primary-light);
+    --color-bg-most-primary-transparent: var(--color-primary-transparent);
+    --color-bg-primary: var(--color-green-contrast);
+    --color-bg-inputs: var(--color-gray-100);
+    --color-bg-first: var(--color-gray-50);
+    --color-bg-half: var(--color-gray-100);
+    --color-bg-secondary: var(--color-gray-100);
+    --color-bg-secondary-light: var(--color-gray-200);
+    --color-bg-tertiary: var(--color-gray-200);
+    --color-bg-header: var(--color-green-contrast) --color-bg-footer: var(--color-gray-50);
+    --color-bg-card: var(--color-gray-100);
+    --color-bg-card-hover: var(--color-gray-200);
+    --color-bg-nav: var(--color-green-contrast);
+    --color-bg-contact-us: var(--color-gray-100);
+    --color-bg-login: var(--color-gray-100);
+    --color-bg-why-choose-us: var(--color-gray-75);
+
+    // Text Colors - Light mode (dark text on light backgrounds)
+    --color-text-primary: #000000;
+    --color-text-primary-light: var(--color-gray-900);
+    --color-text-secondary: var(--color-gray-600);
+    --color-text-secondary-light: var(--color-gray-500);
+    --color-text-tertiary: var(--color-gray-400);
+    --color-text-inverse: #ffffff;
+    --color-text-accent: var(--color-secondary);
+    --color-text-link: var(--color-primary);
+    --color-text-white: #ffffff;
+    --color-text-placeholder: var(--color-gray-400);
+    --color-text-gray: var(--color-gray-600);
+    --color-text-gray-light: var(--color-gray-500);
+    --color-text-light: var(--color-gray-400);
+
+    // Borders
+    --color-border-primary: var(--color-gray-200);
+    --color-border-primary-subtle: var(--color-gray-300);
+    --color-border-secondary: var(--color-gray-300);
+    --color-border-accent: var(--color-secondary);
+    --color-border-focus: var(--color-primary);
+    --color-border-member: var(--color-gray-300);
+
+    // Interactive States
+    --color-link: var(--color-primary);
+    --color-link-hover: var(--color-gray-700);
+    --color-button-primary: #000000;
+    --color-button-primary-hover: var(--color-gray-800);
+    --color-button-secondary: var(--color-gray-100);
+    --color-button-secondary-hover: var(--color-gray-200);
+
+    // Status/Semantic
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: var(--color-primary);
+
+    // Special UI Elements
+    --color-on-air: var(--color-secondary);
+    --color-live-indicator: var(--color-secondary);
+    --color-bitcoin-banner: var(--color-secondary);
+    --color-stream-badge: #ff0000;
+
+    // Additional UI
+    --interviewee-text: var(--color-gray-700);
+    --card-selected: var(--color-gray-200);
+    --card-background-color: var(--color-gray-100);
+    --person-description-color: var(--color-gray-600);
+
+    // Login & Create Account Section
+    --svg-color: var(--color-gray-600);
+    --placeholder-color: var(--color-gray-400);
+
+    // Elevation Layers (for light mode depth)
+    --elevation-1: #ffffff;
+    --elevation-2: #f9fafb;
+    --elevation-3: #f3f4f6;
+    --elevation-4: #e5e7eb;
+    --elevation-5: #d1d5db;
+
+    // Accessibility Tokens
+    --contrast-high-text: #000000;
+    --contrast-low-text: #4b5563;
+    --focus-outline-width: 3px;
+    --focus-outline-color: var(--color-primary);
+}
+
+// // System Theme Detection - Auto-sync with OS preference
+// @media (prefers-color-scheme: dark) {
+//     :root {
+//         // Automatically apply dark theme if OS prefers it
+//         // Can be overridden by [data-theme] attribute
+//     }
+// }
+
+// TYPOGRAPHY
+
+// Font Stacks
+$font-family-primary: sans-serif;
+$font-family-secondary:
+    "SF Pro Display",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+$font-family-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+// Font Sizes
+$font-size-6xs: clamp(0.35rem, 0.7vw, 0.375rem); // ~6px
+$font-size-5xs: clamp(0.4rem, 0.8vw, 0.4375rem); // ~7px
+$font-size-4xs: clamp(0.45rem, 0.9vw, 0.5rem); // ~8px
+$font-size-3xs: clamp(0.5rem, 1vw, 0.5625rem); // ~9px
+$font-size-2xs: clamp(0.55rem, 1.2vw, 0.625rem); // ~10px
+$font-size-xs: clamp(0.65rem, 1.5vw, 0.75rem); // ~12px
+$font-size-sm: clamp(0.75rem, 1.8vw, 0.875rem); // ~14px
+$font-size-base: clamp(0.85rem, 2vw, 1rem); // ~16px
+$font-size-lg: clamp(0.95rem, 2.2vw, 1.125rem); // ~18px
+$font-size-xl: clamp(1.05rem, 2.5vw, 1.25rem); // ~20px
+$font-size-2xl: clamp(1.2rem, 3vw, 1.5rem); // ~24px
+$font-size-3xl: clamp(1.5rem, 3.8vw, 1.875rem); // ~30px
+$font-size-4xl: clamp(1.8rem, 4.5vw, 2.25rem); // ~36px
+$font-size-5xl: clamp(2.2rem, 6vw, 3rem); // ~48px
+$font-size-6xl: clamp(2.8rem, 7.5vw, 3.75rem); // ~60px
+$font-size-7xl: clamp(3.2rem, 9vw, 4.5rem); // ~72px
+$font-size-8xl: clamp(4rem, 12vw, 6rem); // ~96px
+$font-size-9xl: clamp(5rem, 16vw, 8rem); // ~128px
+$font-size-10xl: clamp(6rem, 20vw, 10rem); // ~160px
+$font-size-11xl: clamp(7.5rem, 25vw, 12.5rem); // ~200px
+$font-size-12xl: clamp(9rem, 30vw, 15rem);
+
+// Fluid Typography (Responsive)
+$font-fluid-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+$font-fluid-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+$font-fluid-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+$font-fluid-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+$font-fluid-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+$font-fluid-2xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+$font-fluid-3xl: clamp(1.875rem, 1.4rem + 1.5vw, 2.5rem);
+$font-fluid-4xl: clamp(2.25rem, 1.6rem + 2vw, 3rem);
+$font-fluid-5xl: clamp(3rem, 2rem + 3vw, 4rem);
+$font-fluid-6xl: clamp(3.75rem, 2.5rem + 4vw, 5rem);
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Line Heights
+$line-height-ultra-super-tight: 0.2;
+$line-height-super-super-tight: 1;
+$line-height-super-tight: 1.05;
+$line-height-ultra-tight: 1.1;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+$line-height-ultra-loose: 2.5;
+$line-height-super-loose: 3;
+
+// Letter Spacing
+$letter-spacing-tightest: -0.08em;
+$letter-spacing-tighter: -0.06em;
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.025em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
+$letter-spacing-extra-wide: 0.15em;
+$letter-spacing-extra-widest: 0.2em;
+$letter-spacing-mega-wide: 0.25em;
+$letter-spacing-giga-wide: 0.3em;
+$letter-spacing-ultra-wide: 0.4em;
+$letter-spacing-extreme-wide: 0.5em;
+
+// SPACING SYSTEM
+
+$spacing-unit: 0.25rem; // 4px base
+
+// Spacing Scale
+$spacing-0: 0;
+$spacing-1: $spacing-unit; // 4px
+$spacing-2: $spacing-unit * 2; // 8px
+$spacing-3: $spacing-unit * 3; // 12px
+$spacing-4: $spacing-unit * 4; // 16px
+$spacing-5: $spacing-unit * 5; // 20px
+$spacing-6: $spacing-unit * 6; // 24px
+$spacing-7: $spacing-unit * 7; // 28px
+$spacing-8: $spacing-unit * 8; // 32px
+$spacing-9: $spacing-unit * 9; // 36px
+$spacing-10: $spacing-unit * 10; // 40px
+$spacing-11: $spacing-unit * 11; // 44px
+$spacing-12: $spacing-unit * 12; // 48px
+$spacing-14: $spacing-unit * 14; // 56px
+$spacing-16: $spacing-unit * 16; // 64px
+$spacing-18: $spacing-unit * 18; // 72px
+$spacing-20: $spacing-unit * 20; // 80px
+$spacing-24: $spacing-unit * 24; // 96px
+$spacing-28: $spacing-unit * 28; // 112px
+$spacing-32: $spacing-unit * 32; // 128px
+$spacing-36: $spacing-unit * 36; // 144px
+$spacing-40: $spacing-unit * 40; // 160px
+$spacing-44: $spacing-unit * 44; // 176px
+$spacing-48: $spacing-unit * 48; // 192px
+$spacing-49: $spacing-unit * 49; // 196px
+$spacing-50: $spacing-unit * 50; // 200px
+$spacing-52: $spacing-unit * 52; // 208px
+$spacing-56: $spacing-unit * 56; // 224px
+$spacing-60: $spacing-unit * 60; // 240px
+$spacing-64: $spacing-unit * 64; // 256px
+$spacing-72: $spacing-unit * 72; // 288px
+$spacing-80: $spacing-unit * 80; // 320px
+$spacing-96: $spacing-unit * 96; // 384px
+$spacing-100: $spacing-unit * 100; // 400px
+$spacing-104: $spacing-unit * 104; // 416px
+$spacing-108: $spacing-unit * 108; // 432px
+$spacing-112: $spacing-unit * 112; // 448px
+$spacing-116: $spacing-unit * 116; // 464px
+$spacing-120: $spacing-unit * 120; // 480px
+$spacing-124: $spacing-unit * 124; // 496px
+$spacing-128: $spacing-unit * 128; // 512px
+$spacing-132: $spacing-unit * 132; // 528px
+$spacing-136: $spacing-unit * 136; // 544px
+$spacing-140: $spacing-unit * 140; // 560px
+$spacing-144: $spacing-unit * 144; // 576px
+$spacing-148: $spacing-unit * 148; // 592px
+$spacing-152: $spacing-unit * 152; // 608px
+$spacing-156: $spacing-unit * 156; // 624px
+$spacing-160: $spacing-unit * 160; // 640px
+$spacing-164: $spacing-unit * 164; // 656px
+$spacing-168: $spacing-unit * 168; // 672px
+$spacing-172: $spacing-unit * 172; // 688px
+$spacing-176: $spacing-unit * 176; // 704px
+$spacing-180: $spacing-unit * 180; // 720px
+$spacing-184: $spacing-unit * 184; // 736px
+$spacing-188: $spacing-unit * 188; // 752px
+$spacing-192: $spacing-unit * 192; // 768px
+$spacing-196: $spacing-unit * 196; // 784px
+$spacing-200: $spacing-unit * 200; // 800px
+
+// LAYOUT
+
+// Container Widths
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;
+
+// Grid System
+$grid-columns: 12;
+$grid-gutter: $spacing-6;
+
+// Breakpoints
+$breakpoint-xs: 0;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// VISUAL DESIGN TOKENS
+
+// Opacity Tokens
+$opacity-0: 0;
+$opacity-10: 0.1;
+$opacity-20: 0.2;
+$opacity-30: 0.3;
+$opacity-40: 0.4;
+$opacity-50: 0.5;
+$opacity-60: 0.6;
+$opacity-70: 0.7;
+$opacity-80: 0.8;
+$opacity-90: 0.9;
+$opacity-100: 1;
+
+// Border Radius
+$border-radius-none: 0;
+$border-radius-sm: 0.125rem; // 2px
+$border-radius-base: 0.25rem; // 4px
+$border-radius-md: 0.375rem; // 6px
+$border-radius-lg: 0.5rem; // 8px
+$border-radius-xl: 0.75rem; // 12px
+$border-radius-2xl: 1rem; // 16px
+$border-radius-3xl: 1.5rem; // 24px
+$border-radius-4xl: 2rem; // 32px (new)
+$border-radius-5xl: 2.5rem; // 40px (new)
+$border-radius-6xl: 3rem; // 48px (new)
+$border-radius-7xl: 4rem; // 64px (new)
+$border-radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-base:
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+$shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+$shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+// Z-Index Layers (Semantic Map)
+$z-layers: (
+    "base": 0,
+    "content": 10,
+    "overlay": 100,
+    "dropdown": 1000,
+    "sticky": 1020,
+    "fixed": 1030,
+    "modal-backdrop": 1040,
+    "modal": 1050,
+    "popover": 1060,
+    "tooltip": 1070,
+    "toast": 2000,
+    "tooltip-high": 3000
+);
+
+// Legacy Z-Index (for backward compatibility)
+$z-index-dropdown: map.get($z-layers, "dropdown");
+$z-index-sticky: map.get($z-layers, "sticky");
+$z-index-fixed: map.get($z-layers, "fixed");
+$z-index-modal-backdrop: map.get($z-layers, "modal-backdrop");
+$z-index-modal: map.get($z-layers, "modal");
+$z-index-popover: map.get($z-layers, "popover");
+$z-index-tooltip: map.get($z-layers, "tooltip");
+
+// ANIMATION
+
+// Motion Durations
+$motion-fast: 120ms;
+$motion-medium: 250ms;
+$motion-slow: 400ms;
+$transition-duration-fast: $motion-fast;
+$transition-duration-base: $motion-medium;
+$transition-duration-slow: $motion-slow;
+
+// Motion Curves (Timing Functions)
+$motion-spring: cubic-bezier(0.4, 0, 0.2, 1);
+$motion-decelerate: cubic-bezier(0, 0, 0.2, 1);
+$motion-accelerate: cubic-bezier(0.4, 0, 1, 1);
+$transition-timing-ease: ease;
+$transition-timing-linear: linear;
+$transition-timing-ease-in: ease-in;
+$transition-timing-ease-out: ease-out;
+$transition-timing-ease-in-out: ease-in-out;
+
+// Color System Map (for utilities generation)
+$colors: (
+    "primary": var(--color-primary),
+    "primary-light": var(--color-primary-light),
+    "primary-dark": var(--color-primary-dark),
+    "secondary": var(--color-secondary),
+    "secondary-light": var(--color-secondary-light),
+    "secondary-dark": var(--color-secondary-dark),
+    "accent": var(--color-accent),
+    "success": var(--color-success),
+    "warning": var(--color-warning),
+    "error": var(--color-error),
+    "info": var(--color-info),
+    "white": var(--color-white),
+    "black": var(--color-black)
+);
+
+// COMPONENT VARIABLES
+
+// Header
+$header-height: 80px;
+$header-padding: $spacing-4;
+$nav-item-spacing: $spacing-6;
+
+// Hero Section
+$hero-min-height: 400px;
+$hero-padding: $spacing-8;
+
+// Cards
+$article-card-border-radius: $border-radius-lg;
+$article-card-padding: $spacing-6;
+$article-card-shadow: $shadow-md;
+$article-card-hover-shadow: $shadow-lg;
+
+// Video Player
+$video-player-aspect-ratio: math.div(16, 9);
+$video-player-border-radius: $border-radius-lg;
+
+// Newsletter
+$newsletter-padding: $spacing-8;
+$newsletter-border-radius: $border-radius-xl;
+
+// MIXINS
+
+// Responsive Breakpoints
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == sm {
+        @media (min-width: $breakpoint-sm) {
+            @content;
+        }
+    } @else if $breakpoint == md {
+        @media (min-width: $breakpoint-md) {
+            @content;
+        }
+    } @else if $breakpoint == lg {
+        @media (min-width: $breakpoint-lg) {
+            @content;
+        }
+    } @else if $breakpoint == xl {
+        @media (min-width: $breakpoint-xl) {
+            @content;
+        }
+    } @else if $breakpoint == 2xl {
+        @media (min-width: $breakpoint-2xl) {
+            @content;
+        }
+    }
+}
+
+// Focus States (Enhanced with accessibility)
+@mixin focus-ring($color: var(--focus-outline-color), $width: var(--focus-outline-width)) {
+    outline: $width solid $color;
+    outline-offset: 3px;
+}
+
+// Button Base
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-3 $spacing-6;
+    border-radius: $border-radius-md;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    transition: all $motion-medium $motion-spring;
+    cursor: pointer;
+    border: none;
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    &:disabled {
+        opacity: $opacity-50;
+        cursor: not-allowed;
+    }
+}
+
+// Card Base
+@mixin card-base {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-primary);
+    border-radius: $article-card-border-radius;
+    box-shadow: $article-card-shadow;
+    transition: all $motion-medium $motion-spring;
+
+    &:hover {
+        background-color: var(--color-bg-card-hover);
+        box-shadow: $article-card-hover-shadow;
+        transform: translateY(-2px);
+    }
+}
+
+// Dark Mode Support
+@mixin dark-mode {
+    [data-theme="dark"] & {
+        @content;
+    }
+}
+
+// Light Mode Support
+@mixin light-mode {
+    [data-theme="light"] & {
+        @content;
+    }
+}
+
+// Glassmorphism Effect
+@mixin glassmorphism {
+    background: rgba(255, 255, 255, $opacity-10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, $opacity-20);
+
+    @include dark-mode {
+        background: rgba(0, 0, 0, $opacity-30);
+        border: 1px solid rgba(255, 255, 255, $opacity-10);
+    }
+}
+
+// Opacity & Alpha Utilities
+@mixin alpha-bg($color, $opacity: $opacity-100) {
+    background-color: rgba($color, $opacity);
+}
+
+@mixin alpha-text($color, $opacity: $opacity-100) {
+    color: rgba($color, $opacity);
+}
+
+// Elevation Mixin (for dark mode depth)
+@mixin elevation($level: 1) {
+    background-color: var(--elevation-#{$level});
+}
+
+// Motion & Transition Utilities
+@mixin transition-default($property: all, $duration: $motion-medium, $timing: $motion-spring) {
+    transition: $property $duration $timing;
+}
+
+@mixin transition-fast($property: all) {
+    transition: $property $motion-fast $motion-spring;
+}
+
+@mixin transition-slow($property: all) {
+    transition: $property $motion-slow $motion-spring;
+}
+
+// Z-Index Semantic Helper
+@mixin z($layer) {
+    z-index: map.get($z-layers, $layer);
+}
+
+// Border Radius Utility
+@mixin rounded($size: base) {
+    @if $size == none {
+        border-radius: $border-radius-none;
+    } @else if $size == sm {
+        border-radius: $border-radius-sm;
+    } @else if $size == base {
+        border-radius: $border-radius-base;
+    } @else if $size == md {
+        border-radius: $border-radius-md;
+    } @else if $size == lg {
+        border-radius: $border-radius-lg;
+    } @else if $size == xl {
+        border-radius: $border-radius-xl;
+    } @else if $size == 2xl {
+        border-radius: $border-radius-2xl;
+    } @else if $size == 3xl {
+        border-radius: $border-radius-3xl;
+    } @else if $size == full {
+        border-radius: $border-radius-full;
+    } @else {
+        border-radius: $border-radius-base;
+    }
+}
+
+// Border Utility
+@mixin bordered($color: var(--color-border-primary), $width: 1px, $style: solid) {
+    border: $width $style $color;
+}
+
+// Shadow Utility
+@mixin shadow($level: base) {
+    @if $level == sm {
+        box-shadow: $shadow-sm;
+    } @else if $level == base {
+        box-shadow: $shadow-base;
+    } @else if $level == md {
+        box-shadow: $shadow-md;
+    } @else if $level == lg {
+        box-shadow: $shadow-lg;
+    } @else if $level == xl {
+        box-shadow: $shadow-xl;
+    } @else if $level == 2xl {
+        box-shadow: $shadow-2xl;
+    } @else if $level == none {
+        box-shadow: none;
+    } @else {
+        box-shadow: $shadow-base;
+    }
+}
+
+// Color Utility Classes Generator
+@mixin color-utilities {
+    @each $name, $value in $colors {
+        .text-#{$name} {
+            color: $value;
+        }
+
+        .bg-#{$name} {
+            background-color: $value;
+        }
+
+        .border-#{$name} {
+            border-color: $value;
+        }
+    }
+}

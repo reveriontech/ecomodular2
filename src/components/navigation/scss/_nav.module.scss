@@ -1,0 +1,146 @@
+@use "sass:map";
+@use "@/style/_variables.scss" as *;
+
+.nav {
+    background-color: transparent;
+    border-bottom: none;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: map.get($z-layers, "sticky");
+
+    &__container {
+        max-width: $container-2xl;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: $spacing-4 $spacing-6;
+        gap: $spacing-8;
+
+        @include respond-to(md) {
+            padding: $spacing-5 $spacing-8;
+        }
+    }
+
+    &__left {
+        display: flex;
+        align-items: center;
+        gap: $spacing-6;
+        justify-content: flex-start;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: $spacing-6;
+        justify-content: flex-end;
+    }
+
+    &__link {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        transition: color $motion-medium $motion-spring;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-1;
+
+        &:hover {
+            color: var(--color-text-secondary);
+        }
+    }
+
+    &__dropdown {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    &__caret {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--color-text-secondary);
+        transition: transform $motion-medium $motion-spring;
+        
+        svg {
+            width: 1em;
+            height: 1em;
+            display: block;
+        }
+    }
+
+    &__logo {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__logoImage {
+        height: auto;
+        max-height: 120px;
+        min-width: 400px;
+        width: auto;
+        object-fit: contain;
+
+        @include respond-to(md) {
+            max-height: 150px;
+            min-width: 500px;
+        }
+    }
+
+    &__button {
+        background-color: var(--color-secondary);
+        color: var(--color-text-white);
+        border: none;
+        padding: $spacing-3 $spacing-6;
+        border-radius: $border-radius-md;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+        cursor: pointer;
+        transition: all $motion-medium $motion-spring;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: var(--color-secondary-dark);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+
+    // Mobile Responsive
+    @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+        &__container {
+            gap: $spacing-4;
+        }
+
+        &__logo {
+            margin-bottom: $spacing-2;
+        }
+
+        &__left,
+        &__right {
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        &__logoImage {
+            max-height: 80px;
+            min-width: 250px;
+        }
+    }
+}

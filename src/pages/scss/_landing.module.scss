@@ -1,0 +1,11 @@
+@use "@/style/_variables.scss" as *;
+
+.landing-setup {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-top: -$spacing-48;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
