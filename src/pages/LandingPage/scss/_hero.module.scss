@@ -45,5 +45,11 @@
             color: var(--color-text-primary);
             margin-bottom: $spacing-4;
         }
+
+        // Tablet and below - center the title
+        @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
+            align-items: center;
+            text-align: center;
+        }
     }
 }

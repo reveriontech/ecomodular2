@@ -186,6 +186,124 @@
         }
     }
 
+    // Hamburger Menu Button
+    &__hamburger {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: var(--color-text-primary);
+        cursor: pointer;
+        padding: $spacing-2;
+        border-radius: $border-radius-md;
+        transition: all $motion-medium $motion-spring;
+        z-index: map.get($z-layers, "sticky") + 1;
+
+        svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        &:focus-visible {
+            @include focus-ring;
+        }
+    }
+
+    // Mobile Menu Overlay
+    &__mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--color-white);
+        z-index: map.get($z-layers, "sticky");
+        animation: slideDown 0.3s ease-out;
+        overflow-y: auto;
+        padding-top: 80px;
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &__mobileContent {
+        padding: $spacing-8 $spacing-6;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-8;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    &__mobileFlags {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-4;
+        padding: $spacing-4;
+        background-color: var(--color-background);
+        border-radius: $border-radius-lg;
+    }
+
+    &__mobileLinks {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-1;
+    }
+
+    &__mobileLink {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-medium;
+        padding: $spacing-4 $spacing-6;
+        border-radius: $border-radius-md;
+        transition: all $motion-medium $motion-spring;
+        text-align: center;
+
+        &:hover {
+            background-color: var(--color-background);
+            color: var(--color-text-secondary);
+        }
+    }
+
+    &__mobileButton {
+        background-color: var(--color-secondary);
+        color: var(--color-text-white);
+        border: none;
+        padding: $spacing-4 $spacing-6;
+        border-radius: $border-radius-md;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+        cursor: pointer;
+        transition: all $motion-medium $motion-spring;
+        margin-top: $spacing-4;
+
+        &:hover {
+            background-color: var(--color-secondary-dark);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
     // Scrolled State
     &--scrolled {
         background-color: var(--color-white);
@@ -218,49 +336,57 @@
         }
     }
 
-    // Mobile Responsive
-    @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+    // Tablet & Mobile Responsive
+    @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
         &__container {
+            justify-content: space-between;
             gap: $spacing-4;
-            flex-direction: column;
-        }
-
-        &__logo {
-            margin-bottom: $spacing-2;
-            order: -1; // Keep logo first on mobile
         }
 
         &__left,
         &__right {
-            justify-content: center;
-            flex-wrap: wrap;
+            display: none !important;
         }
 
+        &__logo {
+            flex: 1;
+            justify-content: center;
+        }
+
+        &__logoImage {
+            max-height: 120px;
+            min-width: 400px;
+        }
+
+        // Scrolled state on tablets/mobile
+        &--scrolled {
+            .nav__container {
+                padding: $spacing-3 $spacing-6;
+            }
+
+            .nav__hamburger {
+                display: flex;
+                order: -1;
+            }
+
+            .nav__logoImage {
+                max-height: 50px;
+                min-width: 180px;
+            }
+        }
+    }
+
+    // Small Mobile Devices
+    @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
         &__logoImage {
             max-height: 100px;
             min-width: 320px;
         }
 
-        // Mobile scrolled state
         &--scrolled {
-            .nav__container {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .nav__logo {
-                order: 0;
-                margin-bottom: 0;
-            }
-
             .nav__logoImage {
                 max-height: 45px;
                 min-width: 150px;
-            }
-
-            .nav__left,
-            .nav__right {
-                display: none; // Hide nav links on mobile when scrolled - consider hamburger menu
             }
         }
     }
