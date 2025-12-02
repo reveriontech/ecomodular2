@@ -16,8 +16,7 @@ const Hero = () => {
             </video>
             <div className={styles.hero__container}>
                 <div className={styles.hero__title}>
-                    <p>THE FUTURE OF</p>
-                    <p>CONSTRUCTION</p>
+                    <p>THE FUTURE OF CONSTRUCTION</p>
                 </div>
             </div>
         </div>
