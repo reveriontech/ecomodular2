@@ -20,9 +20,9 @@ const Aboutus = () => {
 
                 {/* RIGHT SIDE */}
                 <div className={styles.aboutus__content}>
-                    <h2>Eco Modular is a leading Smart Tech Modular Manufacturing company based in the UK, Ireland, and Eastern Europe</h2>
-                    <h5>Eco House, Log House, and DN Group are now playing for the Eco Modular team, forging a powerful alliance within the sector.</h5>
-                    <p>We offer a complete jobsite solution, combining Smart Tech and Modular Manufacturing. From concept to completion, our turnkey solutions save time and resources, allowing customers to focus on their goals. With a strong... Eco Modular provides ultimate flexibility and... success.</p>
+                    <h2>Eco Modular is a leading SmartTech Modular Manufacturing company based in the UK, Ireland, and Eastern Europe.</h2>
+                    <h4>Eco House, Log House, and DJI Group are now playing for the Eco Modular team, forming a powerful alliance within the sector.</h4>
+                    <p>We offer a complete jobsite solution, combining SmartTech and Modular Manufacturing. From concept to completion, our turnkey solutions save time and resources, allowing customers to focus on their goals. With expertise, an innovative fleet, extensive locations, and a commitment to being Ready to Work, Eco Modular provides unmatched convenience and success in the industry.</p>
                 </div>
             </div>
         </div>

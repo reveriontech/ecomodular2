@@ -43,6 +43,7 @@
 
     --color-gray: #6b7280;
     --color-gray-light: #9ca3af;
+    --color-gray-bg: #F2EFEF;
 
     --color-white: #ffffff;
     --color-black: #000000;
@@ -57,6 +58,7 @@
     --color-bg-most-primary: var(--color-primary);
     --color-bg-most-primary-light: var(--color-primary-light);
     --color-bg-most-primary-transparent: var(--color-primary-transparent);
+    --color-bg-gray: var(--color-gray-bg);
     --color-bg-primary: var(--color-green-contrast);
     --color-bg-inputs: var(--color-gray-100);
     --color-bg-first: var(--color-gray-50);
