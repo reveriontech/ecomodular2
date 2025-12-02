@@ -1,0 +1,179 @@
+@use "@/style/_variables.scss" as *;
+
+// Breakpoint mixin for cleaner code
+@mixin below($breakpoint) {
+    @media (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+.projects {
+    width: 100%;
+    padding: $spacing-20 $spacing-8;
+    font-family: $font-family-primary;
+    background-color: var(--color-gray-bg);
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-12 $spacing-6;
+    }
+}
+
+.wrapper {
+    max-width: $container-xl;
+    margin: 0 auto;
+}
+
+.title {
+    margin-bottom: $spacing-12;
+
+    p {
+        font-family: $font-family-heading;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-snug;
+        color: var(--color-text-primary);
+        margin: 0;
+
+        @include below($breakpoint-lg) {
+            font-size: $font-size-2xl;
+        }
+    }
+}
+
+.pictures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-6;
+
+    @include below($breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-4;
+    }
+
+    @include below($breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.projectCard {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: $border-radius-4xl;
+    cursor: pointer;
+    transition: box-shadow $motion-medium $motion-spring;
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $motion-slow $motion-spring;
+}
+
+.titleOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: $spacing-4 $spacing-5;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    z-index: 1;
+    transition: opacity $motion-medium $motion-spring;
+}
+
+.projectTitle {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-white);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-lg;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-base;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary-transparent);
+    opacity: 0;
+    transition: opacity $motion-medium $motion-spring;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-4;
+    text-align: center;
+    transform: translateY(20px);
+    transition: transform $motion-medium $motion-spring;
+}
+
+.seeMoreBtn {
+    padding: $spacing-2 $spacing-5;
+    background-color: transparent;
+    border: 1px solid var(--color-text-white);
+    color: var(--color-text-white);
+    border-radius: $border-radius-md;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $motion-medium $motion-spring;
+
+    &:hover {
+        background-color: var(--color-text-white);
+        color: var(--color-text-primary);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+}
+
+// Hover effects
+.projectCard:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    .image {
+        transform: scale(1.1);
+    }
+
+    .overlay {
+        opacity: 1;
+    }
+
+    .content {
+        transform: translateY(0);
+    }
+
+    .titleOverlay {
+        opacity: 0;
+    }
+}
