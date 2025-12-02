@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from './scss/_nav.module.scss'
-import logoImage from '@/assets/logo/EcoModularLogo.png'
+import logoImage from '@/assets/logo/EcoModularLogo.svg'
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { useNavScroll } from './event/NavScrollEvent';
 

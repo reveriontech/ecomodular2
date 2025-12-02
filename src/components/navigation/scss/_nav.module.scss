@@ -141,8 +141,8 @@
 
     &__logoImage {
         height: auto;
-        max-height: 160px;
-        min-width: 550px;
+        max-height: 140px;
+        min-width: 480px;
         width: auto;
         object-fit: contain;
         // Prevent layout shifts during resize
@@ -153,8 +153,8 @@
             min-width $motion-medium $motion-spring;
 
         @include respond-to(md) {
-            max-height: 200px;
-            min-width: 650px;
+            max-height: 170px;
+            min-width: 570px;
         }
     }
 
@@ -326,12 +326,12 @@
         }
 
         .nav__logoImage {
-            max-height: 60px;
-            min-width: 200px;
+            max-height: 50px;
+            min-width: 170px;
 
             @include respond-to(md) {
-                max-height: 70px;
-                min-width: 250px;
+                max-height: 60px;
+                min-width: 210px;
             }
         }
     }
@@ -354,8 +354,8 @@
         }
 
         &__logoImage {
-            max-height: 120px;
-            min-width: 400px;
+            max-height: 105px;
+            min-width: 350px;
         }
 
         // Scrolled state on tablets/mobile
@@ -370,8 +370,8 @@
             }
 
             .nav__logoImage {
-                max-height: 50px;
-                min-width: 180px;
+                max-height: 45px;
+                min-width: 155px;
             }
         }
     }
@@ -379,14 +379,14 @@
     // Small Mobile Devices
     @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
         &__logoImage {
-            max-height: 100px;
-            min-width: 320px;
+            max-height: 90px;
+            min-width: 280px;
         }
 
         &--scrolled {
             .nav__logoImage {
-                max-height: 45px;
-                min-width: 150px;
+                max-height: 40px;
+                min-width: 130px;
             }
         }
     }
