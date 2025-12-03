@@ -1,5 +1,5 @@
 import styles from './scss/_hero.module.scss'
-import heroVideo from '@/assets/videos/HeroBG.mov'
+import heroVideo from '@/assets/videos/mainhero.mp4'
 
 const Hero = () => {
     return (
