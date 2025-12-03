@@ -232,6 +232,18 @@
         display: block;
     }
 
+    thead {
+        display: block;
+    }
+
+    tbody {
+        display: block;
+    }
+
+    tr {
+        display: block;
+    }
+
     .tableHeader {
         display: block;
         width: 100%;
@@ -247,14 +259,6 @@
         &:last-child {
             border-bottom: 2px solid var(--color-border-primary);
         }
-    }
-
-    tbody {
-        display: block;
-    }
-
-    tr {
-        display: block;
     }
 
     .benefitColumn {
