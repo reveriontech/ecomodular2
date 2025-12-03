@@ -51,6 +51,24 @@
         @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
             align-items: center;
             text-align: center;
+
+            p {
+                font-size: $font-size-6xl;
+            }
+        }
+
+        // Mobile - further reduce font size
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            p {
+                font-size: $font-size-5xl;
+            }
+        }
+
+        // Small mobile - smallest font size
+        @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
+            p {
+                font-size: $font-size-4xl;
+            }
         }
     }
 }
