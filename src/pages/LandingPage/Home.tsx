@@ -3,6 +3,7 @@ import Aboutus from "./Aboutus"
 import Projects from "./Projects"
 import Benifits from "./Benifits"
 import Team from "./Team"
+import Video from "./Video"
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Projects />
       <Benifits />
       <Team />
+      <Video />
     </>
   )
 }
