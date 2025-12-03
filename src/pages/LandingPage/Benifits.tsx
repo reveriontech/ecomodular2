@@ -101,6 +101,7 @@ const Benifits = () => {
 
     return (
         <section className={styles.benefits}>
+            <div className={styles.backgroundOverlay}></div>
             <div className={styles.wrapper}>
                 <div className={styles.heading}>
                     <h2>Benefits</h2>
