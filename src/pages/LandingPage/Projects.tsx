@@ -52,6 +52,7 @@ const Projects = () => {
                                     src={project.image}
                                     alt={project.name}
                                     className={s.image}
+                                    loading='lazy'
                                 />
                                 <div className={s.titleOverlay}>
                                     <h3 className={s.projectTitle}>{project.name}</h3>

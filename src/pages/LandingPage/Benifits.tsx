@@ -66,6 +66,7 @@ const Benifits = () => {
                                                         src={cubeImage} 
                                                         alt={`${title} cube icon`}
                                                         className={styles.cubeIcon}
+                                                        loading='lazy'
                                                     />
                                                     <span>{item}</span>
                                                 </li>
