@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 
 export const useNavScroll = (activateAt: number = 10, deactivateAt: number = 5) => {
     const [isScrolled, setIsScrolled] = useState(false)
-    const scrollTimeoutRef = useRef<number | null>(null)
+    const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
     const lastStateRef = useRef(false)
 
     useEffect(() => {

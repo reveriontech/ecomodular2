@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import Nav from "../components/navigation/Nav.tsx"
 import s from './scss/_landing.module.scss'
 import Footer from '../components/navigation/Footer.tsx'
+import ChatbotIcon from '../components/chatbot/ChatbotIcon.tsx'
 
 const LandingPage = () => {
     return (
@@ -13,6 +14,7 @@ const LandingPage = () => {
             </main>
 
             <Footer />
+            <ChatbotIcon />
         </>
     )
 }
