@@ -1,0 +1,416 @@
+@use "@/style/_variables.scss" as *;
+
+// Breakpoint mixin
+@mixin below($breakpoint) {
+    @media (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+.team {
+    width: 100%;
+    padding: $spacing-20 $spacing-8;
+    font-family: $font-family-primary;
+    background-color: var(--color-white);
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-12 $spacing-6;
+    }
+
+    @include below($breakpoint-md) {
+        padding: $spacing-10 $spacing-4;
+    }
+}
+
+.wrapper {
+    max-width: $container-xl;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: flex-start;
+    margin-bottom: $spacing-12;
+
+    @include below($breakpoint-md) {
+        margin-bottom: $spacing-8;
+    }
+}
+
+.title {
+    font-family: $font-family-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-snug;
+    color: var(--color-text-primary);
+    margin: 0 0 $spacing-3;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-3xl;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-2xl;
+    }
+}
+
+.subtitle {
+    font-size: $font-size-lg;
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-base;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-6;
+
+    @include below($breakpoint-xl) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: $spacing-5;
+    }
+
+    @include below($breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-4;
+    }
+
+    @include below($breakpoint-sm) {
+        grid-template-columns: 1fr;
+        gap: $spacing-4;
+    }
+}
+
+.memberCard {
+    position: relative;
+    cursor: pointer;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    transition: all $motion-medium $motion-spring;
+    aspect-ratio: 3 / 4;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+        .image {
+            transform: scale(1.05);
+        }
+
+        .overlay {
+            opacity: 1;
+        }
+
+        .overlayContent {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    &.active {
+        box-shadow: 0 0 0 3px var(--color-primary);
+        transform: translateY(-4px);
+
+        .overlay {
+            opacity: 1;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .overlayContent {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+.imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-gray-200);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform $motion-slow $motion-spring;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+    opacity: 0;
+    transition: opacity $motion-medium $motion-spring;
+    display: flex;
+    align-items: flex-end;
+    padding: $spacing-5;
+}
+
+.overlayContent {
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all $motion-medium $motion-spring;
+    width: 100%;
+}
+
+.memberName {
+    font-family: $font-family-heading;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-white);
+    margin: 0 0 $spacing-1;
+    line-height: $line-height-snug;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-lg;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-base;
+    }
+}
+
+.memberPosition {
+    font-size: $font-size-sm;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: $line-height-normal;
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-xs;
+    }
+}
+
+.selectedIndicator {
+    position: absolute;
+    bottom: $spacing-3;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-white);
+    border-radius: $border-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s infinite;
+
+    svg {
+        color: var(--color-text-primary);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(4px);
+    }
+}
+
+// Dropdown Container
+.dropdownContainer {
+    grid-column: 1 / -1;
+    overflow: hidden;
+    background-color: var(--color-gray-50);
+    border-radius: $border-radius-xl;
+    margin-top: $spacing-2;
+    transition: height $motion-slow $motion-spring;
+
+    &.open {
+        animation: slideDown $motion-slow $motion-spring forwards;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdownContent {
+    position: relative;
+    padding: $spacing-10;
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-8;
+    }
+
+    @include below($breakpoint-md) {
+        padding: $spacing-6;
+    }
+}
+
+.closeButton {
+    position: absolute;
+    top: $spacing-4;
+    right: $spacing-4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all $motion-medium $motion-spring;
+    z-index: 10;
+    background-color: transparent;
+
+    svg {
+        color: var(--color-text-secondary);
+        transition: color $motion-medium $motion-spring;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+
+        svg {
+           transform: scale(1.1);
+           color: var(--color-text-primary);
+        }
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+
+    @include below($breakpoint-md) {
+        width: 36px;
+        height: 36px;
+        top: $spacing-3;
+        right: $spacing-3;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: $spacing-10;
+    align-items: start;
+
+    @include below($breakpoint-lg) {
+        grid-template-columns: 220px 1fr;
+        gap: $spacing-8;
+    }
+
+    @include below($breakpoint-md) {
+        grid-template-columns: 1fr;
+        gap: $spacing-6;
+    }
+}
+
+.detailsImage {
+    position: relative;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+    }
+
+    @include below($breakpoint-md) {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
+
+.detailsInfo {
+    padding-right: $spacing-8;
+
+    @include below($breakpoint-lg) {
+        padding-right: $spacing-4;
+    }
+
+    @include below($breakpoint-md) {
+        padding-right: 0;
+        text-align: center;
+    }
+}
+
+.detailsName {
+    font-family: $font-family-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0 0 $spacing-2;
+    line-height: $line-height-snug;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-2xl;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-xl;
+    }
+}
+
+.detailsPosition {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: var(--color-secondary);
+    margin: 0 0 $spacing-6;
+    letter-spacing: $letter-spacing-wide;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-base;
+        margin-bottom: $spacing-5;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-sm;
+        margin-bottom: $spacing-4;
+    }
+}
+
+.detailsDescription {
+    p {
+        font-size: $font-size-base;
+        line-height: $line-height-relaxed;
+        color: var(--color-text-secondary);
+        margin: 0 0 $spacing-4;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @include below($breakpoint-md) {
+            font-size: $font-size-sm;
+            text-align: left;
+        }
+    }
+}
+
+.noDescription {
+    font-size: $font-size-base;
+    color: var(--color-text-tertiary);
+    font-style: italic;
+    margin: 0;
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-sm;
+    }
+}
