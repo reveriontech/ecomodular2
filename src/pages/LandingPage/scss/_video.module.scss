@@ -3,11 +3,26 @@
 .video {
     width: 100%;
     padding: 4rem 0;
+    position: relative;
+    background-image: url('../../../assets/YoutubeBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 0;
+        pointer-events: none;
+    }
 
     &__container {
         max-width: $container-xl;
         margin: 0 auto;
         padding: 0 2rem;
+        position: relative;
+        z-index: 1;
     }
 
     &__content {
