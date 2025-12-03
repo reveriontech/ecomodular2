@@ -7,6 +7,13 @@
     }
 }
 
+// Reduced motion support
+@mixin prefers-reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        @content;
+    }
+}
+
 .team {
     width: 100%;
     padding: $spacing-20 $spacing-8;
@@ -219,6 +226,12 @@
     }
 }
 
+.selectedIndicator {
+    @include prefers-reduced-motion {
+        animation: none;
+    }
+}
+
 // Dropdown Container
 .dropdownContainer {
     grid-column: 1 / -1;
@@ -241,6 +254,13 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.dropdownContainer {
+    @include prefers-reduced-motion {
+        animation: none;
+        transition: none;
     }
 }
 
@@ -279,8 +299,8 @@
         transform: scale(1.1);
 
         svg {
-           transform: scale(1.1);
-           color: var(--color-text-primary);
+            transform: scale(1.1);
+            color: var(--color-text-primary);
         }
     }
 

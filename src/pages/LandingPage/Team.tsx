@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useMemo, useCallback } from 'react'
 import { ChevronDown, X } from 'lucide-react'
 import s from './scss/_team.module.scss'
 
@@ -97,17 +97,25 @@ Sameer was born and raised in the UAE and has established his footprint in the i
 const Team = () => {
     const [selectedMember, setSelectedMember] = useState<number | null>(null)
 
-    const handleMemberClick = (index: number) => {
-        if (selectedMember === index) {
-            setSelectedMember(null)
-        } else {
-            setSelectedMember(index)
-        }
-    }
-
     // Calculate which row the selected member is in (4 items per row)
-    const getRowIndex = (index: number) => Math.floor(index / 4)
-    const selectedRow = selectedMember !== null ? getRowIndex(selectedMember) : -1
+    const getRowIndex = useCallback((index: number) => Math.floor(index / 4), [])
+
+    const handleMemberClick = useCallback((index: number) => {
+        setSelectedMember((prev) => (prev === index ? null : index))
+    }, [])
+
+    const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            handleMemberClick(index)
+        }
+    }, [handleMemberClick])
+
+    // Memoize selected row calculation
+    const selectedRow = useMemo(() =>
+        selectedMember !== null ? getRowIndex(selectedMember) : -1,
+        [selectedMember, getRowIndex]
+    )
 
     return (
         <div className={s.team}>
@@ -121,12 +129,17 @@ const Team = () => {
                         const memberRow = getRowIndex(index)
                         const isLastInRow = (index + 1) % 4 === 0 || index === teamMembers.length - 1
                         const shouldShowDropdown = isLastInRow && selectedRow === memberRow
+                        const isExpanded = selectedMember === index
 
                         return (
                             <Fragment key={index}>
                                 <div
-                                    className={`${s.memberCard} ${selectedMember === index ? s.active : ''}`}
+                                    className={`${s.memberCard} ${isExpanded ? s.active : ''}`}
                                     onClick={() => handleMemberClick(index)}
+                                    onKeyDown={(e) => handleKeyDown(e, index)}
+                                    role="button"
+                                    tabIndex={0}
+                                    aria-label={`View details for ${member.name}`}
                                 >
                                     <div className={s.imageContainer}>
                                         <img
@@ -134,6 +147,10 @@ const Team = () => {
                                             alt={member.name}
                                             className={s.image}
                                             loading="lazy"
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement
+                                                target.style.display = 'none'
+                                            }}
                                         />
                                         <div className={s.overlay}>
                                             <div className={s.overlayContent}>
@@ -171,6 +188,10 @@ const Team = () => {
                                                     <img
                                                         src={teamMembers[selectedMember].image}
                                                         alt={teamMembers[selectedMember].name}
+                                                        onError={(e) => {
+                                                            const target = e.target as HTMLImageElement
+                                                            target.style.display = 'none'
+                                                        }}
                                                     />
                                                 </div>
                                                 <div className={s.detailsInfo}>
