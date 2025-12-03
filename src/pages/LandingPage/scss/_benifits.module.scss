@@ -28,7 +28,7 @@ $theme-colors: (
     font-family: $font-family-primary;
     background-color: var(--color-white);
     position: relative;
-    background-image: url('../../../assets/CardsBackground.jpg');
+    background-image: url("../../../assets/CardsBackground.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -124,6 +124,8 @@ $theme-colors: (
     width: 400px;
     opacity: 1;
     transform-style: preserve-3d;
+    border: 2px solid var(--color-border-primary);
+    box-shadow: 0 20px 40px 10px rgba(0, 0, 0, 0.15), 0 8px 16px 8px rgba(0, 0, 0, 0.1);
 
     @include below($breakpoint-lg) {
         width: 340px;
@@ -135,6 +137,10 @@ $theme-colors: (
 
     @include below($breakpoint-sm) {
         width: 320px;
+    }
+
+    &:hover {
+        box-shadow: 0 25px 50px 15px rgba(0, 0, 0, 0.2), 0 10px 20px 10px rgba(0, 0, 0, 0.15);
     }
 
     &.left {
@@ -164,6 +170,7 @@ $theme-colors: (
         &:hover {
             transform: perspective(1200px) rotateY(10deg);
             opacity: 0.9;
+            box-shadow: 0 25px 50px 15px rgba(0, 0, 0, 0.2), 0 10px 20px 10px rgba(0, 0, 0, 0.15);
 
             @include below($breakpoint-lg) {
                 transform: perspective(1000px) rotateY(8deg);
@@ -211,6 +218,7 @@ $theme-colors: (
         &:hover {
             transform: perspective(1200px) rotateY(-10deg);
             opacity: 0.9;
+            box-shadow: 0 25px 50px 15px rgba(0, 0, 0, 0.2), 0 10px 20px 10px rgba(0, 0, 0, 0.15);
 
             @include below($breakpoint-lg) {
                 transform: perspective(1000px) rotateY(-8deg);
@@ -234,6 +242,7 @@ $theme-colors: (
     &.active {
         transform: perspective(1200px) rotateY(0deg);
         opacity: 1;
+        box-shadow: 0 30px 60px 20px rgba(0, 0, 0, 0.25), 0 12px 24px 12px rgba(0, 0, 0, 0.2);
 
         @include below($breakpoint-lg) {
             transform: perspective(1000px) rotateY(0deg);
@@ -378,13 +387,15 @@ $theme-colors: (
 
 // Content Container
 .contentContainer {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border-radius: $border-radius-xl;
     padding: $spacing-10;
     opacity: 0;
     transform: translateY(20px);
     transition: all $motion-medium $motion-spring;
+    border: 1px solid var(--color-border-primary);
+    box-shadow: $shadow-md;
 
     &.contentVisible {
         opacity: 1;
