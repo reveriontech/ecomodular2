@@ -18,7 +18,7 @@
     width: 100%;
     padding: $spacing-20 $spacing-8;
     font-family: $font-family-primary;
-    background-color: var(--color-white);
+    background-color: var(--color-gray-bg);
 
     @include below($breakpoint-lg) {
         padding: $spacing-12 $spacing-6;
