@@ -268,7 +268,7 @@
         display: flex;
         gap: $spacing-16;
         justify-content: flex-end;
-        align-items: flex-end;
+        align-items: flex-start;
         margin-left: auto;
 
         @include respond-to(md) {
@@ -290,9 +290,13 @@
         flex-direction: column;
         gap: $spacing-4;
         width: auto;
+        min-width: 0;
+        flex: 1;
+        max-width: 220px;
 
         @media (max-width: calc(#{$breakpoint-md} - 1px)) {
             width: 100%;
+            max-width: 100%;
         }
     }
 
@@ -307,6 +311,53 @@
         &:hover {
             color: var(--color-secondary-light);
             text-decoration: underline;
+        }
+    }
+
+    &__officeTitle {
+        color: var(--color-text-white);
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        margin: 0 0 $spacing-3 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__officeAddress {
+        color: var(--color-text-white);
+        font-size: $font-size-sm;
+        font-weight: $font-weight-normal;
+        margin: 0 0 $spacing-2 0;
+        line-height: 1.5;
+        opacity: 0.9;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    &__officePhone {
+        color: var(--color-text-white);
+        font-size: $font-size-sm;
+        font-weight: $font-weight-normal;
+        margin: 0 0 $spacing-2 0;
+        opacity: 0.9;
+    }
+
+    &__officeEmail {
+        color: var(--color-text-white);
+        font-size: $font-size-sm;
+        font-weight: $font-weight-normal;
+        margin: 0;
+        opacity: 0.9;
+
+        a {
+            color: var(--color-text-white);
+            text-decoration: none;
+            transition: color $motion-medium $motion-spring;
+
+            &:hover {
+                color: var(--color-secondary-light);
+                text-decoration: underline;
+            }
         }
     }
 

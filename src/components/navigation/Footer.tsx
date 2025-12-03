@@ -59,30 +59,39 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Middle Section - Navigation Links */}
+          {/* Middle Section - Office Contact Information */}
           <div className={styles.footer__nav}>
             <div className={styles.footer__navColumn}>
-              <a href="#" className={styles.footer__navLink}>Find a Floor Plan</a>
-              <a href="#" className={styles.footer__navLink}>Find a Retail Location</a>
-              <a href="#" className={styles.footer__navLink}>Manufacturing</a>
+              <h4 className={styles.footer__officeTitle}>IRELAND OFFICE</h4>
+              <p className={styles.footer__officeAddress}>
+                Unit 518A Grants Crescent, Greenogue Business Park, Rathcoole, Co. Dublin, D24 FD63
+              </p>
+              <p className={styles.footer__officePhone}>t: +353 1 43 70 909</p>
+              <p className={styles.footer__officeEmail}>
+                e: <a href="mailto:info@ecomodular.com">info@ecomodular.com</a>
+              </p>
             </div>
 
             <div className={styles.footer__navColumn}>
-              <a href="#" className={styles.footer__navLink}>About</a>
-              <a href="#" className={styles.footer__navLink}>Our Construction Process</a>
-              <a href="#" className={styles.footer__navLink}>Homeowner Resources</a>
+              <h4 className={styles.footer__officeTitle}>CYPRUS OFFICE</h4>
+              <p className={styles.footer__officeAddress}>
+                121 Prodromou, Office 201, 2064, Nicosia, Cyprus
+              </p>
+              <p className={styles.footer__officePhone}>t: +357 97 425 472</p>
+              <p className={styles.footer__officeEmail}>
+                e: <a href="mailto:info@ecomodular.com">info@ecomodular.com</a>
+              </p>
             </div>
 
             <div className={styles.footer__navColumn}>
-              <a href="#" className={styles.footer__navLink}>Contact</a>
-              <a href="#" className={styles.footer__navLink}>Request Information</a>
-              <a href="#" className={styles.footer__navLink}>Become a Retailer</a>
-            </div>
-
-            <div className={styles.footer__navColumn}>
-              <a href="#" className={styles.footer__navLink}>Service / Parts Inquiry</a>
-              <a href="#" className={styles.footer__navLink}>Careers</a>
-              <a href="#" className={styles.footer__navLink}>HomeFront (Blog)</a>
+              <h4 className={styles.footer__officeTitle}>LITHUANIA OFFICE</h4>
+              <p className={styles.footer__officeAddress}>
+                Maironio g. 26b, Kaunas, 44249 Lithuania
+              </p>
+              <p className={styles.footer__officePhone}>t: +370 60 101 010</p>
+              <p className={styles.footer__officeEmail}>
+                e: <a href="mailto:info@ecomodular.com">info@ecomodular.com</a>
+              </p>
             </div>
           </div>
         </div>
