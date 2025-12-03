@@ -66,7 +66,7 @@ const Nav = () => {
                 <span className={styles.nav__caret}><ChevronDown /></span>
               </a>
             </div>
-            <a href="#projects" className={styles.nav__link}>Projects</a>
+            <a href="#projects" className={styles.nav__link}>Systems</a>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ const Nav = () => {
 
         {/* Right Navigation Items */}
         <div className={styles.nav__right}>
-          <a href="#news" className={styles.nav__link}>News</a>
+          <a href="#news" className={styles.nav__link}>Project</a>
           <a href="#contact" className={styles.nav__link}>Contact</a>
           <button className={styles.nav__button}>LET'S TALK</button>
         </div>
@@ -112,8 +112,8 @@ const Nav = () => {
               <a href="#products" className={styles.nav__mobileLink} onClick={closeMobileMenu}>
                 Products
               </a>
-              <a href="#projects" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Projects</a>
-              <a href="#news" className={styles.nav__mobileLink} onClick={closeMobileMenu}>News</a>
+              <a href="#projects" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Systems</a>
+              <a href="#news" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Project</a>
               <a href="#contact" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Contact</a>
               <button className={styles.nav__mobileButton} onClick={closeMobileMenu}>LET'S TALK</button>
             </div>

@@ -1,44 +1,47 @@
 import s from './scss/_projects.module.scss'
 import apartmentsImg from '@/assets/buildings/Ecomodular-Projects-apartments.jpg'
 import hotelsImg from '@/assets/buildings/Ecomodular-Projects-hotels.jpg'
-import residentialHousingImg from '@/assets/buildings/Ecomodular-Projects-residential-housing.jpg'
-import schoolsImg from '@/assets/buildings/Ecomodular-Projects-schools.jpg'
-import studentAccommodationImg from '@/assets/buildings/Ecomodular-Projects-student-accomodation.jpg'
 import nursingHomesImg from '@/assets/buildings/Ecomodular-Projects-Nursing-home.jpg'
+import resedential from '@/assets/buildings/Ecomodular-Projects-residential-housing.jpg'
+import studentAccommodationImg from '@/assets/buildings/Ecomodular-Projects-student-accomodation.jpg'
+import bathroom from '@/assets/buildings/Ecomodular-Bathroom-Pods-1-1.jpg'
+
 
 const projects = [
-    {
-        name: 'APARTMENTS',
-        image: apartmentsImg
-    },
     {
         name: 'HOTELS',
         image: hotelsImg
     },
     {
-        name: 'RESIDENTIAL HOUSING',
-        image: residentialHousingImg
+        name: 'APARTMENTS',
+        image: apartmentsImg
     },
     {
-        name: 'SCHOOL',
-        image: schoolsImg
+        name: 'NURSING HOMES',
+        image: nursingHomesImg
+    },
+    {
+        name: 'Social Housing',
+        image: resedential
     },
     {
         name: 'STUDENT ACCOMMODATION',
         image: studentAccommodationImg
     },
     {
-        name: 'NURSING HOMES',
-        image: nursingHomesImg
-    }
+        name: 'Bathroom Pods',
+        image: bathroom
+    },
 ]
+
+
 
 const Projects = () => {
     return (
         <div className={s.projects}>
             <div className={s.wrapper}>
                 <div className={s.title}>
-                    <p> Projects </p>
+                    <p> Building Systems </p>
                 </div>
 
                 <div className={s.pictures}>

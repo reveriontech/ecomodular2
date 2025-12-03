@@ -1,0 +1,276 @@
+@use "@/style/_variables.scss" as *;
+
+// Breakpoint mixin for cleaner code
+@mixin below($breakpoint) {
+    @media (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+.benifits {
+    width: 100%;
+    padding: $spacing-20 $spacing-8;
+    font-family: $font-family-primary;
+    background-color: var(--color-white);
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-12 $spacing-6;
+    }
+}
+
+.wrapper {
+    max-width: $container-xl;
+    margin: 0 auto;
+}
+
+.heading {
+    margin-bottom: $spacing-12;
+
+    h2 {
+        font-family: $font-family-heading;
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-snug;
+        color: var(--color-text-primary);
+        margin: 0;
+
+        @include below($breakpoint-lg) {
+            font-size: $font-size-2xl;
+        }
+    }
+}
+
+.tableContainer {
+    overflow-x: auto;
+    border-radius: $border-radius-xl;
+    border: 1px solid var(--color-border-primary);
+    background-color: var(--color-white);
+    box-shadow: $shadow-sm;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-white);
+    table-layout: fixed;
+}
+
+.tableHeader {
+    --header-accent: #5ea5ff;
+    width: 33.333%;
+    padding: $spacing-3 $spacing-5;
+    text-align: center;
+    font-family: $font-family-heading;
+    font-weight: $font-weight-bold;
+    color: var(--header-accent);
+    background-color: var(--color-gray-50);
+    border-bottom: 2px solid var(--color-border-primary);
+    border-right: 1px solid var(--color-border-primary);
+    vertical-align: middle;
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-4 $spacing-6;
+    }
+
+    @include below($breakpoint-md) {
+        padding: $spacing-3 $spacing-4;
+    }
+
+    &:first-child {
+        border-top-left-radius: $border-radius-xl;
+    }
+
+    &:last-child {
+        border-top-right-radius: $border-radius-xl;
+        border-right: none;
+    }
+
+    &[data-theme="speed"] {
+        --header-accent: #5ea5ff;
+    }
+
+    &[data-theme="quality"] {
+        --header-accent: #325ba8;
+    }
+
+    &[data-theme="environment"] {
+        --header-accent: #4bb071;
+    }
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-3;
+
+    @include below($breakpoint-md) {
+        gap: $spacing-2;
+    }
+}
+
+.headerIcon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--header-accent);
+    flex-shrink: 0;
+
+    @include below($breakpoint-lg) {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    @include below($breakpoint-md) {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+.headerTitle {
+    font-size: $font-size-2xl;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    color: var(--header-accent);
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-xl;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-lg;
+    }
+}
+
+.benefitColumn {
+    --column-accent: #5ea5ff;
+    width: 33.333%;
+    padding: $spacing-8;
+    vertical-align: top;
+    border-right: 1px solid var(--color-border-primary);
+    transition: background-color $motion-medium $motion-spring;
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-6;
+    }
+
+    @include below($breakpoint-md) {
+        padding: $spacing-4;
+    }
+
+    &:hover {
+        background-color: var(--color-gray-50);
+    }
+
+    &:last-child {
+        border-right: none;
+    }
+
+    &[data-theme="speed"] {
+        --column-accent: #5ea5ff;
+    }
+
+    &[data-theme="quality"] {
+        --column-accent: #325ba8;
+    }
+
+    &[data-theme="environment"] {
+        --column-accent: #4bb071;
+    }
+}
+
+.featuresList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+
+    @include below($breakpoint-md) {
+        gap: $spacing-3;
+    }
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+    font-size: $font-size-lg;
+    line-height: $line-height-relaxed;
+    color: var(--color-text-secondary);
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-base;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-sm;
+        gap: $spacing-2;
+    }
+}
+
+.cubeIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+
+    @include below($breakpoint-md) {
+        width: 1rem;
+        height: 1rem;
+    }
+}
+
+// Responsive: Stack columns on mobile
+@include below($breakpoint-md) {
+    .tableContainer {
+        border-radius: $border-radius-lg;
+    }
+
+    .table {
+        display: block;
+    }
+
+    .tableHeader {
+        display: block;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border-primary);
+        border-radius: 0;
+
+        &:first-child {
+            border-top-left-radius: $border-radius-lg;
+            border-top-right-radius: $border-radius-lg;
+        }
+
+        &:last-child {
+            border-bottom: 2px solid var(--color-border-primary);
+        }
+    }
+
+    tbody {
+        display: block;
+    }
+
+    tr {
+        display: block;
+    }
+
+    .benefitColumn {
+        display: block;
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid var(--color-border-primary);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .benefitColumn {
+        transition: none;
+    }
+}

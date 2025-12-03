@@ -1,0 +1,347 @@
+@use "sass:map";
+@use "@/style/_variables.scss" as *;
+
+.footer {
+    background-color: var(--color-gray-800);
+    color: var(--color-text-white);
+    width: 100%;
+    font-family: $font-family-primary;
+
+    &__newsletter {
+        padding: $spacing-12 $spacing-6;
+
+        @include respond-to(md) {
+            padding: $spacing-10 $spacing-8;
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            padding: $spacing-8 $spacing-6;
+        }
+    }
+
+    &__newsletterContainer {
+        max-width: $container-xl;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-8;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $spacing-6;
+        }
+    }
+
+    &__newsletterContent {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-2;
+        flex: 1;
+    }
+
+    &__newsletterTitle {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-semibold;
+        color: var(--color-text-white);
+        margin: 0;
+        line-height: 1.2;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            font-size: $font-size-xl;
+        }
+    }
+
+    &__newsletterSubtitle {
+        font-size: $font-size-base;
+        color: var(--color-text-white);
+        margin: 0;
+        font-weight: $font-weight-normal;
+        opacity: 0.9;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            font-size: $font-size-sm;
+        }
+    }
+
+    &__newsletterForm {
+        display: flex;
+        gap: $spacing-4;
+        align-items: center;
+        flex-shrink: 0;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+
+    &__newsletterInput {
+        padding: $spacing-2 $spacing-3;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        color: var(--color-text-white);
+        font-size: $font-size-base;
+        font-family: $font-family-primary;
+        min-width: 250px;
+        transition: all $motion-medium $motion-spring;
+
+        &::placeholder {
+            color: var(--color-gray-400);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            width: 100%;
+            min-width: unset;
+        }
+    }
+
+    &__newsletterButton {
+        padding: $spacing-2 $spacing-3;
+        background-color: var(--color-secondary);
+        color: var(--color-text-white);
+        border: none;
+        border-radius: 4px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        font-family: $font-family-primary;
+        cursor: pointer;
+        transition: all $motion-medium $motion-spring;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: var(--color-secondary-light);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            width: 100%;
+        }
+    }
+
+    &__newsletterDivider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-top: $spacing-8;
+        width: 100%;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            margin-top: $spacing-6;
+        }
+    }
+
+    &__main {
+        padding: $spacing-12 $spacing-6;
+
+        @include respond-to(md) {
+            padding: $spacing-10 $spacing-8;
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            padding: $spacing-8 $spacing-6;
+        }
+    }
+
+    &__container {
+        max-width: $container-xl;
+        margin: 0 auto;
+        display: flex;
+        gap: $spacing-12;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        @include respond-to(md) {
+            gap: $spacing-10;
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            flex-direction: column;
+            gap: $spacing-8;
+        }
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-6;
+        flex-shrink: 0;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            width: 100%;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    &__logo {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-2;
+        align-items: flex-start;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            align-items: center;
+        }
+    }
+
+    &__logoImage {
+        height: auto;
+        max-height: 40px;
+        width: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+
+        @include respond-to(md) {
+            max-height: 35px;
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            max-height: 30px;
+        }
+    }
+
+    &__companyName {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        color: var(--color-text-white);
+        margin: 0;
+    }
+
+    &__description {
+        margin-top: $spacing-2;
+    }
+
+    &__descriptionText {
+        font-size: $font-size-base;
+        color: var(--color-text-white);
+        margin: 0;
+        font-weight: $font-weight-normal;
+    }
+
+    &__social {
+        display: flex;
+        gap: $spacing-4;
+        flex-wrap: wrap;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            justify-content: center;
+        }
+    }
+
+    &__socialLink {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--color-text-white);
+        transition: all $motion-medium $motion-spring;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        gap: $spacing-16;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-left: auto;
+
+        @include respond-to(md) {
+            gap: $spacing-12;
+        }
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            flex-direction: column;
+            gap: $spacing-8;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 0;
+            width: 100%;
+        }
+    }
+
+    &__navColumn {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-4;
+        width: auto;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            width: 100%;
+        }
+    }
+
+    &__navLink {
+        color: var(--color-text-white);
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-normal;
+        transition: color $motion-medium $motion-spring;
+        white-space: nowrap;
+
+        &:hover {
+            color: var(--color-secondary-light);
+            text-decoration: underline;
+        }
+    }
+
+    &__bottom {
+        background-color: var(--color-gray-700);
+        padding: $spacing-4 $spacing-6;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        @include respond-to(md) {
+            padding: $spacing-3 $spacing-4;
+        }
+    }
+
+    &__copyright {
+        max-width: $container-xl;
+        margin: 0 auto;
+        font-size: $font-size-sm;
+        color: var(--color-gray-300);
+        text-align: center;
+        line-height: 1.6;
+
+        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+            font-size: $font-size-xs;
+        }
+    }
+
+    &__policyLink {
+        color: var(--color-gray-300);
+        text-decoration: none;
+        margin: 0 $spacing-1;
+        transition: color $motion-medium $motion-spring;
+
+        &:hover {
+            color: var(--color-text-white);
+            text-decoration: underline;
+        }
+    }
+}
