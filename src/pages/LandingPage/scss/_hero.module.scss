@@ -26,6 +26,26 @@
     }
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .hero {
     position: relative;
     width: 100%;
@@ -45,6 +65,12 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.hero__videoAnimate {
+    opacity: 1;
 }
 
 .hero__container {
@@ -55,46 +81,54 @@
     margin: 0 auto;
     text-align: flex-start;
     font-family: $font-family-primary;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s;
+}
 
-    .hero__title {
-        display: flex;
+.hero__containerAnimate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: $spacing-32;
+    text-align: center;
+
+    p {
+        font-family: $font-family-heading;
+        font-size: $font-size-7halfxl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-super-tight;
+        color: var(--color-text-primary);
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    // Tablet and below - adjust font size
+    @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
         align-items: center;
-        justify-content: center;
-        margin-top: $spacing-32;
         text-align: center;
 
         p {
-            font-family: $font-family-heading;
-            font-size: $font-size-7halfxl;
-            font-weight: $font-weight-bold;
-            line-height: $line-height-super-tight;
-            color: var(--color-text-primary);
-            margin: 0;
-            white-space: nowrap;
+            font-size: $font-size-6xl;
         }
+    }
 
-        // Tablet and below - adjust font size
-        @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
-            align-items: center;
-            text-align: center;
-
-            p {
-                font-size: $font-size-6xl;
-            }
+    // Mobile - further reduce font size
+    @media (max-width: calc(#{$breakpoint-md} - 1px)) {
+        p {
+            font-size: $font-size-5xl;
         }
+    }
 
-        // Mobile - further reduce font size
-        @media (max-width: calc(#{$breakpoint-md} - 1px)) {
-            p {
-                font-size: $font-size-5xl;
-            }
-        }
-
-        // Small mobile - smallest font size
-        @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
-            p {
-                font-size: $font-size-4xl;
-            }
+    // Small mobile - smallest font size
+    @media (max-width: calc(#{$breakpoint-sm} - 1px)) {
+        p {
+            font-size: $font-size-4xl;
         }
     }
 }
@@ -112,9 +146,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    animation:
-        bounce 2s infinite,
-        fade 2s infinite;
+    opacity: 0;
     transition: all $motion-medium $motion-spring;
 
     &:hover {
@@ -139,6 +171,13 @@
     @media (max-width: calc(#{$breakpoint-md} - 1px)) {
         bottom: $spacing-8;
     }
+}
+
+.hero__scrollIndicatorAnimate {
+    opacity: 1;
+    animation:
+        bounce 2s infinite 0.8s,
+        fade 2s infinite 0.8s;
 }
 
 .hero__scrollArrow {

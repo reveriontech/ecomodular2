@@ -7,6 +7,17 @@
     }
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .projects {
     width: 100%;
     padding: $spacing-20 $spacing-8;
@@ -25,6 +36,9 @@
 
 .title {
     margin-bottom: $spacing-12;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 
     p {
         font-family: $font-family-heading;
@@ -38,6 +52,11 @@
             font-size: $font-size-2xl;
         }
     }
+}
+
+.titleAnimate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .pictures {
@@ -61,7 +80,39 @@
     overflow: hidden;
     border-radius: $border-radius-4xl;
     cursor: pointer;
-    transition: box-shadow $motion-medium $motion-spring;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow $motion-medium $motion-spring;
+}
+
+.projectCardAnimate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+// Staggered animation delays using nth-child
+.pictures .projectCardAnimate:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.pictures .projectCardAnimate:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.pictures .projectCardAnimate:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+.pictures .projectCardAnimate:nth-child(4) {
+    transition-delay: 0.9s;
+}
+
+.pictures .projectCardAnimate:nth-child(5) {
+    transition-delay: 1s;
+}
+
+.pictures .projectCardAnimate:nth-child(6) {
+    transition-delay: 1.4s;
 }
 
 .imageContainer {

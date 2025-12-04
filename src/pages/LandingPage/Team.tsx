@@ -1,4 +1,4 @@
-import { useState, Fragment, useMemo, useCallback } from 'react'
+import { useState, Fragment, useMemo, useCallback, useEffect, useRef } from 'react'
 import { ChevronDown, X } from 'lucide-react'
 import s from './scss/_team.module.scss'
 
@@ -95,7 +95,33 @@ Sameer was born and raised in the UAE and has established his footprint in the i
 ]
 
 const Team = () => {
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const [isVisible, setIsVisible] = useState(false)
     const [selectedMember, setSelectedMember] = useState<number | null>(null)
+
+    useEffect(() => {
+        const currentRef = sectionRef.current
+        if (!currentRef) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true)
+                    }
+                })
+            },
+            {
+                threshold: 0.2,
+            }
+        )
+
+        observer.observe(currentRef)
+
+        return () => {
+            observer.unobserve(currentRef)
+        }
+    }, [])
 
     // Calculate which row the selected member is in (4 items per row)
     const getRowIndex = useCallback((index: number) => Math.floor(index / 4), [])
@@ -118,10 +144,10 @@ const Team = () => {
     )
 
     return (
-        <div className={s.team}>
+        <div ref={sectionRef} className={s.team}>
             <div className={s.wrapper}>
                 <div className={s.header}>
-                    <h2 className={s.title}>Meet Our Team</h2>
+                    <h2 className={`${s.title} ${isVisible ? s.titleAnimate : ''}`}>Meet Our Team</h2>
                 </div>
 
                 <div className={s.grid}>
@@ -134,7 +160,7 @@ const Team = () => {
                         return (
                             <Fragment key={index}>
                                 <div
-                                    className={`${s.memberCard} ${isExpanded ? s.active : ''}`}
+                                    className={`${s.memberCard} ${isExpanded ? s.active : ''} ${isVisible ? s.memberCardAnimate : ''}`}
                                     onClick={() => handleMemberClick(index)}
                                     onKeyDown={(e) => handleKeyDown(e, index)}
                                     role="button"

@@ -7,10 +7,33 @@
     }
 }
 
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .benefits {
     width: 100%;
-    padding: $spacing-20 $spacing-8;
-    background-color: var(--color-gray-100);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
 
     @include below($breakpoint-lg) {
         padding: $spacing-12 $spacing-6;
@@ -24,10 +47,12 @@
 .wrapper {
     max-width: $container-xl;
     margin: 0 auto;
+    width: 100%;
 }
 
 .header {
     margin-bottom: $spacing-12;
+    text-align: start;
 
     @include below($breakpoint-md) {
         margin-bottom: $spacing-8;
@@ -36,245 +61,401 @@
 
 .title {
     font-family: $font-family-heading;
-    font-size: $font-size-4xl;
+    font-size: $font-size-5xl;
     font-weight: $font-weight-bold;
     line-height: $line-height-snug;
     color: var(--color-text-primary);
     margin: 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
 
     @include below($breakpoint-lg) {
-        font-size: $font-size-2xl;
+        font-size: $font-size-3xl;
     }
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-6;
-
-    @include below($breakpoint-lg) {
-        grid-template-columns: 1fr;
-        gap: $spacing-5;
-    }
+.titleAnimate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-// Card Styles
-.card {
-    background-color: var(--color-white);
-    border-radius: $border-radius-2xl;
-    padding: $spacing-8;
+// Main content layout
+.content {
     display: flex;
-    flex-direction: column;
-    gap: $spacing-8;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: all $motion-medium $motion-spring;
-    border-top: 4px solid transparent;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    }
+    align-items: flex-start;
+    gap: $spacing-16;
 
     @include below($breakpoint-lg) {
-        padding: $spacing-6;
-        gap: $spacing-6;
-    }
-
-    // Color variants
-    &--speed {
-        border-top-color: #3498db;
-
-        .card__title {
-            color: #3498db;
-        }
-    }
-
-    &--quality {
-        border-top-color: var(--color-text-primary);
-
-        .card__title {
-            color: var(--color-text-primary);
-        }
-    }
-
-    &--environment {
-        border-top-color: var(--color-secondary);
-
-        .card__title {
-            color: var(--color-secondary);
-        }
+        flex-direction: column-reverse;
+        gap: $spacing-10;
     }
 }
 
-.card__header {
+// Left side - GIF Display
+.display {
+    flex: 0.7;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: $spacing-2;
-    padding-bottom: $spacing-3;
-    border-bottom: 1px solid var(--color-gray-200);
-
-    @include below($breakpoint-lg) {
-        flex-direction: row;
-        justify-content: center;
-        gap: $spacing-4;
-        padding-bottom: $spacing-4;
-    }
-}
-
-.card__icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-
-    @include below($breakpoint-lg) {
-        width: 60px;
-        height: 60px;
-    }
-
-    @include below($breakpoint-md) {
-        width: 50px;
-        height: 50px;
-    }
-}
-
-.card__title {
-    font-family: $font-family-heading;
-    font-size: $font-size-4xl;
-    font-weight: $font-weight-bold;
-    letter-spacing: $letter-spacing-wider;
-    margin: 0;
-    text-transform: uppercase;
-
-    @include below($breakpoint-lg) {
-        font-size: $font-size-xl;
-    }
-}
-
-// Stats Container
-.card__stats {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-6;
-    flex: 1;
-
-    @include below($breakpoint-lg) {
-        gap: $spacing-5;
-    }
-}
-
-// Individual Stat
-.stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $spacing-2;
-    text-align: center;
-    padding: $spacing-4;
-    border-radius: $border-radius-xl;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    background-color: var(--color-green-contrast);
-    transition: all $motion-fast $motion-spring;
-
-    &:hover {
-        background-color: var(--color-green-contrast);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    @include below($breakpoint-lg) {
-        padding: $spacing-3;
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-}
-
-.stat__icon {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-
-    @include below($breakpoint-lg) {
-        width: 44px;
-        height: 44px;
-    }
-
-    @include below($breakpoint-md) {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-.stat__value {
-    display: flex;
-    align-items: baseline;
     justify-content: center;
-    gap: $spacing-1;
+    background-color: var(--color-white);
+    border-radius: $border-radius-3xl;
+    padding: $spacing-16;
+    min-height: 550px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: $spacing-8;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition:
+        opacity 0.8s ease-out 0.3s,
+        transform 0.8s ease-out 0.3s;
 
     @include below($breakpoint-lg) {
-        justify-content: flex-end;
+        position: relative;
+        top: 0;
+        min-height: 350px;
+        padding: $spacing-8;
+        width: 100%;
     }
 }
 
-.stat__number {
-    font-family: $font-family-primary;
-    font-size: $font-size-3xl;
-    font-weight: $font-weight-bold;
-    color: var(--color-text-primary);
-    line-height: 1;
+.displayAnimate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.displayImage {
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.4s ease-out;
+    margin: 0 auto;
+    display: block;
 
     @include below($breakpoint-lg) {
-        font-size: $font-size-2xl;
+        max-width: 200px;
+        max-height: 200px;
     }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// Right side - Timeline
+.timeline {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+
+    @include below($breakpoint-lg) {
+        width: 100%;
+    }
+}
+
+// Timeline vertical line
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(
+        to bottom,
+        var(--color-gray-200) 0%,
+        var(--color-gray-300) 50%,
+        var(--color-gray-200) 100%
+    );
+    transform-origin: top;
+    transition: height 1.2s ease-out 0.5s;
 
     @include below($breakpoint-md) {
-        font-size: $font-size-xl;
+        left: 16px;
     }
 }
 
-.stat__plus {
+.timelineAnimate::before {
+    height: calc(100% - 80px);
+}
+
+// Category (Speed, Quality, Environment)
+.category {
+    position: relative;
+    padding-left: $spacing-16;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
+
+    @include below($breakpoint-md) {
+        padding-left: $spacing-12;
+    }
+}
+
+.categoryAnimate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+// Staggered animation delays for categories
+.timeline .categoryAnimate:nth-child(1) {
+    transition-delay: 0.6s;
+}
+
+.timeline .categoryAnimate:nth-child(2) {
+    transition-delay: 0.9s;
+}
+
+.timeline .categoryAnimate:nth-child(3) {
+    transition-delay: 1.2s;
+}
+
+// Add more gap before category 3 (Environment) to align with left GIF
+.category--environment {
+    margin-top: $spacing-6;
+
+    @include below($breakpoint-lg) {
+        margin-top: $spacing-4;
+    }
+}
+
+// Category header (clickable)
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    padding: $spacing-4 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.2s ease;
+
+    &:hover .categoryNumber {
+        transform: scale(1.1);
+    }
+}
+
+// Number circle
+.categoryNumber {
+    position: absolute;
+    left: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: $border-radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: $font-family-primary;
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
     font-weight: $font-weight-bold;
-    color: var(--color-secondary);
-    line-height: 1;
+    color: var(--color-white);
+    background-color: var(--color-gray-400);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
 
-    @include below($breakpoint-lg) {
-        font-size: $font-size-lg;
+    @include below($breakpoint-md) {
+        width: 34px;
+        height: 34px;
+        font-size: $font-size-base;
     }
 }
 
-.stat__prefix {
-    font-family: $font-family-primary;
-    font-size: $font-size-xs;
-    font-weight: $font-weight-semibold;
-    color: var(--color-text-primary-light);
-    margin-right: $spacing-2;
+.categoryNumber--active {
+    background-color: var(--color-blue-700);
+    box-shadow: 0 4px 20px rgba(14, 116, 144, 0.4);
+}
 
-    @include below($breakpoint-lg) {
-        font-size: $font-size-xs;
+// Category colors
+.category--speed .categoryNumber--active {
+    background-color: var(--color-blue-700);
+    box-shadow: 0 4px 20px rgba(14, 116, 144, 0.4);
+}
+
+.category--quality .categoryNumber--active {
+    background-color: var(--color-text-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.category--environment .categoryNumber--active {
+    background-color: var(--color-green-category);
+    box-shadow: 0 4px 20px rgba(21, 128, 61, 0.4);
+}
+
+// Category title
+.categoryTitle {
+    font-family: $font-family-primary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-secondary);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.categoryTitle--active {
+    color: var(--color-text-primary);
+    font-weight: $font-weight-semibold;
+}
+
+// Highlight word
+.highlight {
+    font-weight: $font-weight-bold;
+}
+
+.highlight--speed {
+    color: var(--color-blue-700);
+}
+
+.highlight--quality {
+    color: var(--color-text-primary);
+}
+
+.highlight--environment {
+    color: var(--color-green-category);
+}
+
+// Chevron icon
+.chevron {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    color: var(--color-gray-400);
+    transition: transform 0.3s ease;
+}
+
+.chevron--open {
+    transform: rotate(180deg);
+    color: var(--color-text-primary);
+}
+
+// Items list (accordion content)
+.itemsList {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-left: 0;
+    margin-top: $spacing-1;
+}
+
+.itemsList--open {
+    max-height: 400px;
+}
+
+// Individual item
+.item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    padding: $spacing-1;
+    margin: $spacing-1 0;
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    border-left: 3px solid transparent;
+
+    &:hover {
+        background-color: var(--color-gray-50);
+        border-left-color: var(--color-gray-300);
     }
 }
 
-.stat__label {
+.item--active {
+    background-color: var(--color-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.item--active.item--speed {
+    border-left-color: var(--color-blue-700);
+}
+
+.item--active.item--quality {
+    border-left-color: var(--color-text-primary);
+}
+
+.item--active.item--environment {
+    border-left-color: var(--color-green-category);
+}
+
+// Item icon
+.itemIcon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+
+    @include below($breakpoint-md) {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.item:hover .itemIcon {
+    opacity: 0.8;
+}
+
+// Item content
+.itemContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.itemLabel {
     font-family: $font-family-primary;
-    font-size: $font-size-sm;
+    font-size: $font-size-lg;
     font-weight: $font-weight-semibold;
-    color: var(--color-text-primary-light);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: $line-height-snug;
 
     sub {
         font-size: 0.7em;
         vertical-align: sub;
     }
 
-    @include below($breakpoint-lg) {
-        font-size: $font-size-sm;
-        flex: 1;
-        text-align: left;
-        margin-left: $spacing-3;
+    @include below($breakpoint-md) {
+        font-size: $font-size-base;
     }
+}
+
+.itemValue {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+    line-height: $line-height-snug;
 
     @include below($breakpoint-md) {
-        font-size: $font-size-xs;
+        font-size: $font-size-sm;
     }
+}
+
+.itemValue--speed {
+    color: var(--color-blue-700);
+}
+
+.itemValue--quality {
+    color: var(--color-text-primary);
+}
+
+.itemValue--environment {
+    color: var(--color-green-category);
 }
