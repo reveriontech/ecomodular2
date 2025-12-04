@@ -15,7 +15,7 @@ const AppRoutes = () => {
             <ScrollToTop />
             <Suspense fallback={
                 <div className={styles.loadingWrapper}>
-                    <PulseLoader size={12} />
+                    <PulseLoader size={40} />
                 </div>
             }>
 
