@@ -76,27 +76,27 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
       const stream = await chat.sendMessageStream({ message: userMessageContent });
       let text = '';
       let modelMessageId: string = '';
-      
+
       for await (const chunk of stream) {
         if (isLoading) {
-            setIsLoading(false); 
+          setIsLoading(false);
         }
         const c = chunk as GenerateContentResponse;
         text += c.text;
         const htmlContent = await marked.parse(text);
 
         if (!modelMessageId) {
-            modelMessageId = simpleUUID();
-            setMessages((prev) => [
+          modelMessageId = simpleUUID();
+          setMessages((prev) => [
             ...prev,
             { id: modelMessageId, role: MessageRole.MODEL, content: htmlContent },
-            ]);
+          ]);
         } else {
-            setMessages((prev) =>
+          setMessages((prev) =>
             prev.map((msg) =>
-                msg.id === modelMessageId ? { ...msg, content: htmlContent } : msg
+              msg.id === modelMessageId ? { ...msg, content: htmlContent } : msg
             )
-            );
+          );
         }
       }
     } catch (error) {
@@ -111,7 +111,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
       setIsLoading(false);
     }
   };
-  
+
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
     e.target.style.height = 'auto';
@@ -124,23 +124,16 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
         <header className={styles.chatInterface__header}>
           <div className={styles.chatInterface__headerContent}>
             <h1 className={styles.chatInterface__title}>EcoModular Assistant</h1>
-            <p className={styles.chatInterface__status}>
-              <span className={styles.chatInterface__statusDot}>
-                <span className={styles.chatInterface__statusPing}></span>
-                <span className={styles.chatInterface__statusIndicator}></span>
-              </span>
-              Online
-            </p>
           </div>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className={styles.chatInterface__closeButton}
             aria-label="Close chat"
           >
             <CloseIcon className={styles.chatInterface__closeIcon} />
           </button>
         </header>
-        
+
         <div className={styles.chatInterface__messages}>
           {messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} />
@@ -171,7 +164,10 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ onClose }) => {
               onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                   e.preventDefault();
-                  handleSendMessage(e as any);
+                  const form = e.currentTarget.form;
+                  if (form) {
+                    form.requestSubmit();
+                  }
                 }
               }}
               placeholder="Ask a question..."

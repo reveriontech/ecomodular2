@@ -1,0 +1,111 @@
+@use "@/style/_variables.scss" as *;
+
+.contact-ads {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    height: 40vh;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-8 $spacing-6;
+    overflow: hidden;
+
+    // @include respond-to(md) {
+    //     min-height: 600px;
+    //     height: 65vh;
+    //     padding: $spacing-16 $spacing-8;
+    // }
+
+    // @include respond-to(lg) {
+    //     min-height: 650px;
+    //     height: 70vh;
+    //     padding: $spacing-20 $spacing-12;
+    // }
+
+    // @include respond-to(xl) {
+    //     min-height: 700px;
+    //     height: 80vh;
+    //     padding: $spacing-24 $spacing-16;
+    // }
+}
+
+.contact-ads-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%);
+    }
+}
+
+.contact-ads-content {
+    position: relative;
+    z-index: 1;
+    max-width: $container-2xl;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-8 $spacing-6;
+
+    @include respond-to(md) {
+        padding: $spacing-10 $spacing-8;
+    }
+
+    @include respond-to(lg) {
+        padding: $spacing-12 $spacing-10;
+    }
+}
+
+.contact-ads-heading {
+    font-family: $font-family-primary;
+    font-size: clamp($font-size-xl, 4vw, $font-size-4xl);
+    font-weight: $font-weight-bold;
+    color: var(--color-text-white);
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-tight;
+    line-height: $line-height-ultra-tight;
+    margin: 0 0 $spacing-6 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    @include respond-to(md) {
+        margin: 0 0 $spacing-8 0;
+    }
+
+    @include respond-to(lg) {
+        margin: 0 0 $spacing-10 0;
+    }
+}
+
+.contact-ads-description {
+    font-family: $font-family-primary;
+    font-size: clamp($font-size-sm, 1.8vw, $font-size-base);
+    font-weight: $font-weight-medium;
+    color: var(--color-text-white);
+    line-height: $line-height-ultra-super-tight;
+    margin: 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+    @include respond-to(lg) {
+        max-width: 1000px;
+    }
+}

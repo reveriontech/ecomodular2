@@ -3,12 +3,21 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import {
     LandingPage,
     Home,
+    ContactUs,
 } from "./LazyCodeSplitting";
+import PulseLoader from "../components/loader/PulseLoader";
+import ScrollToTop from "../components/ScrollToTop";
+import styles from "./scss/AppRoutes.module.scss";
 
 const AppRoutes = () => {
     return (
         <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <ScrollToTop />
+            <Suspense fallback={
+                <div className={styles.loadingWrapper}>
+                    <PulseLoader size={12} />
+                </div>
+            }>
 
                 <Routes>
 
@@ -18,6 +27,7 @@ const AppRoutes = () => {
                     {/* Landing Page Routes */}
                     <Route path="/" element={<LandingPage />}>
                         <Route index element={<Home />} />
+                        <Route path="/contact-us" element={<ContactUs />} />
                     </Route>
 
                 </Routes>

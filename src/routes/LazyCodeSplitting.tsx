@@ -31,3 +31,8 @@ export const LandingPage = lazy(() =>
 export const Home = lazy(() =>
   lazyRetry(() => import(/* webpackChunkName: "home-page" */ "../pages/LandingPage/Home"))
 );  
+
+// Contact Us Page
+export const ContactUs = lazy(() =>
+  lazyRetry(() => import(/* webpackChunkName: "contact-us-page" */ "../pages/ContactUs"))
+);

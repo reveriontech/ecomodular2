@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styles from './scss/_nav.module.scss'
 import logoImage from '@/assets/logo/EcoModularLogo.svg'
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -6,12 +7,17 @@ import { useNavScroll } from './event/NavScrollEvent';
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
 
   // Lower thresholds to activate navbar with minimal scroll
   const activateAt = 10
   const deactivateAt = 5
 
   const isScrolled = useNavScroll(activateAt, deactivateAt)
+
+  // Show navbar immediately on contact page
+  const isContactPage = location.pathname === '/contact-us'
+  const shouldShowNavbar = isScrolled || isContactPage
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -22,12 +28,12 @@ const Nav = () => {
   }
 
   return (
-    <nav className={`${styles.nav} ${isScrolled ? styles['nav--scrolled'] : ''}`}>
+    <nav className={`${styles.nav} ${shouldShowNavbar ? styles['nav--scrolled'] : ''}`}>
       <div className={styles.nav__container}>
 
-        {/* Mobile Menu Button - Only show when scrolled */}
-        {isScrolled && (
-          <button 
+        {/* Mobile Menu Button - Show when scrolled or on contact page */}
+        {shouldShowNavbar && (
+          <button
             className={styles.nav__hamburger}
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
@@ -72,13 +78,15 @@ const Nav = () => {
 
         {/* Center Logo */}
         <div className={styles.nav__logo}>
-          <img src={logoImage} alt="ECO MODULAR" className={styles.nav__logoImage} />
+          <Link to="/">
+            <img src={logoImage} alt="ECO MODULAR" className={styles.nav__logoImage} />
+          </Link>
         </div>
 
         {/* Right Navigation Items */}
         <div className={styles.nav__right}>
           <a href="#news" className={styles.nav__link}>Project</a>
-          <a href="#contact" className={styles.nav__link}>Contact</a>
+          <Link to="/contact-us" className={styles.nav__link}>Contact</Link>
           <button className={styles.nav__button}>LET'S TALK</button>
         </div>
       </div>
@@ -114,7 +122,7 @@ const Nav = () => {
               </a>
               <a href="#projects" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Systems</a>
               <a href="#news" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Project</a>
-              <a href="#contact" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Contact</a>
+              <Link to="/contact-us" className={styles.nav__mobileLink} onClick={closeMobileMenu}>Contact</Link>
               <button className={styles.nav__mobileButton} onClick={closeMobileMenu}>LET'S TALK</button>
             </div>
           </div>

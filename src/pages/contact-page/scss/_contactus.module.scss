@@ -1,0 +1,236 @@
+@use "@/style/_variables.scss" as *;
+
+.contact-us {
+    width: 100%;
+    padding: $spacing-20 $spacing-6;
+    margin-top: 0;
+
+    @include respond-to(md) {
+        padding: $spacing-24 $spacing-8;
+    }
+
+    @include respond-to(lg) {
+        padding: $spacing-28 $spacing-12;
+    }
+
+    @include respond-to(xl) {
+        padding: $spacing-32 $spacing-16;
+    }
+}
+
+.contact-us-wrapper {
+    max-width: $container-xl;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-12;
+
+    @include respond-to(lg) {
+        grid-template-columns: 1fr 0.9fr;
+        gap: $spacing-16;
+    }
+}
+
+// Left Column Styles
+.contact-us-left {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-8;
+}
+
+.contact-us-heading {
+    font-family: $font-family-primary;
+    font-size: clamp($font-size-2xl, 3vw, $font-size-4xl);
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-tight;
+    line-height: $line-height-snug;
+}
+
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+}
+
+.service-item {
+    position: relative;
+    padding-left: $spacing-8;
+    font-family: $font-family-primary;
+    font-size: clamp($font-size-base, 1.5vw, $font-size-lg);
+    font-weight: $font-weight-normal;
+    color: var(--color-text-primary);
+    line-height: $line-height-relaxed;
+    margin: 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: $border-radius-full;
+        background-color: var(--color-secondary);
+    }
+}
+
+// Right Column Styles
+.contact-us-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form {
+    border-radius: $border-radius-xl;
+    padding: $spacing-6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-primary);
+    box-shadow: $shadow-lg;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include respond-to(md) {
+        padding: $spacing-7;
+        gap: $spacing-5;
+    }
+
+    @include respond-to(lg) {
+        padding: $spacing-8;
+        margin: 0;
+        max-width: 100%;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+}
+
+.form-label {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    color: var(--color-text-primary);
+    background-color: var(--color-gray-100);
+    border: 1px solid var(--color-gray-300);
+    border-radius: $border-radius-md;
+    padding: $spacing-3;
+    transition: all $motion-medium $motion-spring;
+
+    &:focus {
+        outline: none;
+        border-color: var(--color-secondary);
+        background-color: var(--color-white);
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    }
+
+    &::placeholder {
+        color: var(--color-text-placeholder);
+    }
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: $font-family-primary;
+    line-height: $line-height-relaxed;
+}
+
+.gdpr-section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+}
+
+.gdpr-label {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.required {
+    color: var(--color-error);
+}
+
+.gdpr-checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-2;
+}
+
+.form-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--color-secondary);
+    flex-shrink: 0;
+
+    &:focus {
+        outline: 2px solid var(--color-secondary);
+        outline-offset: 2px;
+    }
+}
+
+.gdpr-text {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-normal;
+    color: var(--color-text-secondary);
+    line-height: $line-height-relaxed;
+    margin: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: $spacing-3 $spacing-6;
+    background-color: var(--color-gray-200);
+    color: var(--color-text-primary);
+    border: none;
+    border-radius: $border-radius-lg;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $motion-medium $motion-spring;
+    margin-top: $spacing-1;
+
+    &:hover {
+        background-color: var(--color-gray-300);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+}
