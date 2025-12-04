@@ -1,7 +1,7 @@
 import Hero from "./Hero"
 import Aboutus from "./Aboutus"
 import Projects from "./Projects"
-import Benifits from "./Benifits"
+import Benefits from "./Benefits"
 import Team from "./Team"
 import Video from "./Video"
 
@@ -11,7 +11,7 @@ const Home = () => {
       <Hero />
       <Aboutus />
       <Projects />
-      <Benifits />
+      <Benefits />
       <Team />
       <Video />
     </>
