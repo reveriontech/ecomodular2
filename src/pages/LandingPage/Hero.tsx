@@ -1,7 +1,15 @@
 import styles from './scss/_hero.module.scss'
 import heroVideo from '@/assets/videos/mainhero.mp4'
+import { ChevronDown } from 'lucide-react'
 
 const Hero = () => {
+    const scrollToContent = () => {
+        window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+        })
+    }
+
     return (
         <div className={styles.hero}>
             <video
@@ -19,6 +27,15 @@ const Hero = () => {
                     <p>THE FUTURE OF CONSTRUCTION</p>
                 </div>
             </div>
+
+            {/* Scroll Indicator */}
+            <button
+                className={styles.hero__scrollIndicator}
+                onClick={scrollToContent}
+                aria-label="Scroll to content"
+            >
+                <ChevronDown className={styles.hero__scrollArrow} />
+            </button>
         </div>
     )
 }
