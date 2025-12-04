@@ -1,5 +1,27 @@
 @use "@/style/_variables.scss" as *;
 
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .aboutus {
     width: 100%;
     padding: $spacing-20 $spacing-8;
@@ -34,6 +56,11 @@
     overflow: hidden;
     box-shadow: $shadow-lg;
     cursor: pointer;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
 
     &::before {
         content: "";
@@ -55,6 +82,11 @@
     @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
         min-height: 300px;
     }
+}
+
+.aboutus__videoWrapperAnimate {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .aboutus__video {
@@ -81,10 +113,43 @@
         line-height: $line-height-snug;
         color: var(--color-text-primary);
         margin: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.8s ease-out 0.3s,
+            transform 0.8s ease-out 0.3s;
 
         @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
             font-size: $font-size-2xl;
         }
+    }
+
+    .aboutus__titleAnimate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h4 {
+        font-family: $font-family-primary;
+        font-size: $font-size-xl;
+        font-weight: $font-weight-medium;
+        line-height: $line-height-snug;
+        color: var(--color-text-secondary);
+        margin: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+            opacity 0.8s ease-out 0.6s,
+            transform 0.8s ease-out 0.6s;
+
+        @media (max-width: calc(#{$breakpoint-lg} - 1px)) {
+            font-size: $font-size-lg;
+        }
+    }
+
+    .aboutus__subtitleAnimate {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     h5 {
@@ -107,5 +172,13 @@
         line-height: $line-height-relaxed;
         color: var(--color-text-secondary);
         margin: 0;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out 0.9s, transform 0.8s ease-out 0.9s;
+    }
+
+    .aboutus__paragraphAnimate {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

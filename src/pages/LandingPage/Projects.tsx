@@ -5,6 +5,7 @@ import nursingHomesImg from '@/assets/buildings/Ecomodular-Projects-Nursing-home
 import resedential from '@/assets/buildings/Ecomodular-Projects-residential-housing.jpg'
 import studentAccommodationImg from '@/assets/buildings/Ecomodular-Projects-student-accomodation.jpg'
 import bathroom from '@/assets/buildings/Ecomodular-Bathroom-Pods-1-1.jpg'
+import { useEffect, useRef, useState } from 'react'
 
 
 const projects = [
@@ -37,16 +38,46 @@ const projects = [
 
 
 const Projects = () => {
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const [isVisible, setIsVisible] = useState(false)
+
+    useEffect(() => {
+        const currentRef = sectionRef.current
+        if (!currentRef) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true)
+                    }
+                })
+            },
+            {
+                threshold: 0.2,
+            }
+        )
+
+        observer.observe(currentRef)
+
+        return () => {
+            observer.unobserve(currentRef)
+        }
+    }, [])
+
     return (
-        <div className={s.projects}>
+        <div ref={sectionRef} className={s.projects}>
             <div className={s.wrapper}>
-                <div className={s.title}>
+                <div className={`${s.title} ${isVisible ? s.titleAnimate : ''}`}>
                     <p> Building Systems </p>
                 </div>
 
                 <div className={s.pictures}>
                     {projects.map((project, index) => (
-                        <div key={index} className={s.projectCard}>
+                        <div
+                            key={index}
+                            className={`${s.projectCard} ${isVisible ? s.projectCardAnimate : ''}`}
+                        >
                             <div className={s.imageContainer}>
                                 <img
                                     src={project.image}
@@ -59,7 +90,7 @@ const Projects = () => {
                                 </div>
                                 <div className={s.overlay}>
                                     <div className={s.content}>
-                                        <h3 className={s.projectTitle}>{project.name}</h3>  
+                                        <h3 className={s.projectTitle}>{project.name}</h3>
                                         <button className={s.seeMoreBtn}>See more</button>
                                     </div>
                                 </div>
