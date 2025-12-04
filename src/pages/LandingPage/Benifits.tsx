@@ -2,9 +2,13 @@ import { useState, useCallback } from 'react'
 import styles from './scss/_benifits.module.scss'
 
 // Benefit images
-import speedImage from '@/assets/benefits/speed.jpg'
-import qualityImage from '@/assets/benefits/quality.jpg'
-import environmentImage from '@/assets/benefits/environment.jpg'
+// import speedImage from '@/assets/benefits/speed.jpg'
+// import qualityImage from '@/assets/benefits/quality.jpg'
+// import environmentImage from '@/assets/benefits/environment.jpg'
+
+import speedImage from '@/assets/benefits/speed1.jpg'
+import qualityImage from '@/assets/benefits/quality1.jpg'
+import environmentImage from '@/assets/benefits/environment1.jpg'
 
 interface BenefitCategory {
     title: string
