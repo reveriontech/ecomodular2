@@ -4,6 +4,7 @@ import {
     LandingPage,
     Home,
     ContactUs,
+    BuildingsPage,
 } from "./LazyCodeSplitting";
 import PulseLoader from "../components/loader/PulseLoader";
 import ScrollToTop from "../components/ScrollToTop";
@@ -28,6 +29,7 @@ const AppRoutes = () => {
                     <Route path="/" element={<LandingPage />}>
                         <Route index element={<Home />} />
                         <Route path="/contact-us" element={<ContactUs />} />
+                        <Route path="/buildings" element={<BuildingsPage />} />
                     </Route>
 
                 </Routes>

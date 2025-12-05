@@ -1,0 +1,240 @@
+@use "@/style/_variables.scss" as *;
+
+// Breakpoint mixin
+@mixin below($breakpoint) {
+    @media (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+.buildings {
+    width: 100%;
+    padding: $spacing-20 $spacing-8;
+    font-family: $font-family-primary;
+    background-color: var(--color-gray-bg);
+
+    @include below($breakpoint-lg) {
+        padding: $spacing-12 $spacing-6;
+    }
+
+    @include below($breakpoint-md) {
+        padding: $spacing-10 $spacing-4;
+    }
+}
+
+.wrapper {
+    max-width: $container-xl;
+    margin: 0 auto;
+}
+
+.buildingSection {
+    margin-bottom: $spacing-20;
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease-out,
+        transform 0.8s ease-out;
+
+    @include below($breakpoint-lg) {
+        margin-bottom: $spacing-16;
+    }
+
+    @include below($breakpoint-md) {
+        margin-bottom: $spacing-12;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.buildingSection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-12;
+    align-items: start;
+
+    @include below($breakpoint-lg) {
+        grid-template-columns: 1fr;
+        gap: $spacing-8;
+    }
+}
+
+// Reversed layout for alternating sections (images on right)
+.buildingSection.reversed .contentWrapper {
+    @include below($breakpoint-lg) {
+        grid-template-columns: 1fr;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: 1fr 1fr;
+
+        .imagesContainer {
+            order: 2;
+        }
+
+        .textContainer {
+            order: 1;
+        }
+    }
+}
+
+// Left Side - Images
+.imagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-2;
+
+    @include below($breakpoint-lg) {
+        gap: $spacing-4;
+    }
+}
+
+.mainImageWrapper {
+    width: 100%;
+    border-radius: $border-radius-4xl;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 16 / 9;
+
+    @include below($breakpoint-md) {
+        border-radius: $border-radius-xl;
+    }
+}
+
+.mainImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform $motion-slow $motion-spring;
+
+    .mainImageWrapper:hover & {
+        transform: scale(1.05);
+    }
+}
+
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-2;
+
+    @include below($breakpoint-md) {
+        gap: $spacing-3;
+    }
+}
+
+.gridImageWrapper {
+    width: 100%;
+    border-radius: $border-radius-4xl;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition:
+        transform $motion-medium $motion-spring,
+        box-shadow $motion-medium $motion-spring;
+
+    @include below($breakpoint-md) {
+        border-radius: $border-radius-lg;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+}
+
+.gridImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform $motion-slow $motion-spring;
+
+    .gridImageWrapper:hover & {
+        transform: scale(1.1);
+    }
+}
+
+// Right Side - Text
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-6;
+    padding: $spacing-4 0;
+
+    @include below($breakpoint-lg) {
+        gap: $spacing-5;
+        padding: 0;
+    }
+}
+
+.title {
+    font-family: $font-family-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-snug;
+    color: var(--color-text-primary);
+    margin: 0;
+
+    @include below($breakpoint-lg) {
+        font-size: $font-size-3xl;
+    }
+
+    @include below($breakpoint-md) {
+        font-size: $font-size-2xl;
+    }
+}
+
+.description {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    line-height: $line-height-relaxed;
+    color: var(--color-text-secondary);
+    text-align: justify;
+
+    p {
+        margin: 0 0 $spacing-5;
+        text-align: justify;
+
+        @include below($breakpoint-md) {
+            font-size: $font-size-sm;
+            margin-bottom: $spacing-4;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Staggered animation delays for sections
+.buildingSection:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.buildingSection:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.buildingSection:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.buildingSection:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.buildingSection:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+.buildingSection:nth-child(6) {
+    transition-delay: 0.6s;
+}

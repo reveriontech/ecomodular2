@@ -31,7 +31,7 @@ const Aboutus = () => {
     }, [])
 
     return (
-        <div ref={sectionRef} className={styles.aboutus}>
+        <div ref={sectionRef} id="about" className={styles.aboutus}>
             <div className={styles.aboutus__container}>
                 {/* LEFT SIDE */}
                 <div
