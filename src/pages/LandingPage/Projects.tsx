@@ -6,6 +6,7 @@ import resedential from '@/assets/buildings/Ecomodular-Projects-residential-hous
 import studentAccommodationImg from '@/assets/buildings/Ecomodular-Projects-student-accomodation.jpg'
 import bathroom from '@/assets/buildings/Ecomodular-Bathroom-Pods-1-1.jpg'
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 const projects = [
@@ -66,7 +67,7 @@ const Projects = () => {
     }, [])
 
     return (
-        <div ref={sectionRef} className={s.projects}>
+        <div ref={sectionRef} id="projects" className={s.projects}>
             <div className={s.wrapper}>
                 <div className={`${s.title} ${isVisible ? s.titleAnimate : ''}`}>
                     <p> Building Systems </p>
@@ -91,12 +92,21 @@ const Projects = () => {
                                 <div className={s.overlay}>
                                     <div className={s.content}>
                                         <h3 className={s.projectTitle}>{project.name}</h3>
-                                        <button className={s.seeMoreBtn}>See more</button>
+                                        <Link
+                                            to={`/buildings?filter=${encodeURIComponent(project.name)}`}
+                                            className={s.seeMoreBtn}
+                                        >
+                                            See more
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className={`${s.viewAllWrapper} ${isVisible ? s.viewAllAnimate : ''}`}>
+                    <Link to="/buildings" className={s.viewAllBtn}>See more</Link>
                 </div>
             </div>
         </div>

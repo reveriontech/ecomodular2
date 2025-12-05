@@ -2,8 +2,9 @@ import Hero from "./Hero"
 import Aboutus from "./Aboutus"
 import Projects from "./Projects"
 import Benefits from "./Benefits"
+import Banner from "./Banner"
 import Team from "./Team"
-import Video from "./Video"
+// import Video from "./Video"
 
 const Home = () => {
   return (
@@ -12,8 +13,9 @@ const Home = () => {
       <Aboutus />
       <Projects />
       <Benefits />
+      <Banner />
       <Team />
-      <Video />
+      {/* <Video /> */}
     </>
   )
 }

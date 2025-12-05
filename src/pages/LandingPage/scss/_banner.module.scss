@@ -1,0 +1,179 @@
+@use "@/style/_variables.scss" as *;
+
+// Media query mixin helper
+@mixin below($breakpoint) {
+    @media (max-width: calc(#{$breakpoint} - 1px)) {
+        @content;
+    }
+}
+
+.bannerSection {
+    width: 100%;
+    padding: $spacing-20 $spacing-6;
+    
+    @include below($breakpoint-lg) {
+        padding: $spacing-12 $spacing-4;
+    }
+}
+
+.container {
+    max-width: $container-xl;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-8;
+    
+    @include below($breakpoint-lg) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-6;
+    }
+    
+    @include below($breakpoint-md) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    background-color: var(--color-white);
+    border-radius: $border-radius-xl;
+    padding: $spacing-8;
+    box-shadow: $shadow-lg;
+    transition: transform $motion-medium $motion-spring, box-shadow $motion-medium $motion-spring;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: visible;
+    height: 100%;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-xl;
+    }
+}
+
+// Badge for center card
+.badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-green-900);
+    color: var(--color-white);
+    padding: $spacing-1 $spacing-4;
+    border-radius: $border-radius-full;
+    font-family: $font-family-primary;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    white-space: nowrap;
+}
+
+// Specific card color themes
+.speed {
+    .checkIcon {
+        color: var(--color-blue-500);
+    }
+}
+
+.quality {
+    border: 1px solid var(--color-gray-200);
+    
+    .checkIcon {
+        color: var(--color-primary);
+    }
+}
+
+.environment {
+    .checkIcon {
+        color: var(--color-green-500);
+    }
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: $spacing-6;
+    text-align: center;
+}
+
+.title {
+    font-family: $font-family-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0;
+    margin-bottom: $spacing-4;
+    letter-spacing: $letter-spacing-wide;
+    
+    @include below($breakpoint-md) {
+        font-size: $font-size-2xl;
+    }
+}
+
+.gifWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    transition: transform $motion-medium $motion-spring;
+    
+    .card:hover & {
+        transform: scale(1.1);
+    }
+}
+
+.gif {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--color-gray-200);
+    width: 100%;
+    margin-bottom: $spacing-6;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-5;
+}
+
+.listItem {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+}
+
+.checkIcon {
+    flex-shrink: 0;
+    margin-top: 4px; // Align visually with text line-height
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    color: var(--color-text-secondary);
+    line-height: $line-height-relaxed;
+    margin: 0;
+}
+
+.boldText {
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+}
+

@@ -114,6 +114,18 @@
         position: relative;
         display: flex;
         align-items: center;
+
+        // Create a hover bridge to prevent dropdown from closing when moving cursor
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: calc(#{$spacing-2} + 4px);
+            background: transparent;
+            z-index: map.get($z-layers, "sticky") + 1;
+        }
     }
 
     &__caret {
@@ -128,6 +140,54 @@
             width: 1em;
             height: 1em;
             display: block;
+        }
+
+        &Open {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__dropdownMenu {
+        position: absolute;
+        top: calc(100% + #{$spacing-2} - 2px);
+        left: 0;
+        background-color: var(--color-white);
+        border-radius: $border-radius-md;
+        border: 1px solid var(--color-border-primary);
+        box-shadow: $shadow-lg;
+        min-width: 200px;
+        padding: $spacing-2;
+        padding-top: calc(#{$spacing-2} + 2px);
+        z-index: map.get($z-layers, "sticky") + 1;
+        animation: fadeInDown 0.2s ease-out;
+        pointer-events: auto;
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    &__dropdownItem {
+        display: block;
+        padding: $spacing-3 $spacing-4;
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        border-radius: $border-radius-sm;
+        transition: all $motion-medium $motion-spring;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: var(--color-background);
+            color: var(--color-text-secondary);
         }
     }
 
@@ -273,6 +333,55 @@
         border-radius: $border-radius-md;
         transition: all $motion-medium $motion-spring;
         text-align: center;
+
+        &:hover {
+            background-color: var(--color-background);
+            color: var(--color-text-secondary);
+        }
+    }
+
+    &__mobileDropdown {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__mobileDropdownToggle {
+        background: none;
+        border: none;
+        color: var(--color-text-primary);
+        font-size: $font-size-lg;
+        font-weight: $font-weight-medium;
+        padding: $spacing-4 $spacing-6;
+        border-radius: $border-radius-md;
+        transition: all $motion-medium $motion-spring;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $spacing-2;
+
+        &:hover {
+            background-color: var(--color-background);
+            color: var(--color-text-secondary);
+        }
+    }
+
+    &__mobileDropdownMenu {
+        display: flex;
+        flex-direction: column;
+        padding: $spacing-2 0;
+        margin-left: $spacing-4;
+    }
+
+    &__mobileDropdownItem {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-size: $font-size-base;
+        font-weight: $font-weight-medium;
+        padding: $spacing-3 $spacing-6;
+        border-radius: $border-radius-md;
+        transition: all $motion-medium $motion-spring;
 
         &:hover {
             background-color: var(--color-background);

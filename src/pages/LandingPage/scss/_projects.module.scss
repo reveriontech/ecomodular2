@@ -194,6 +194,8 @@
     font-size: $font-size-base;
     font-weight: $font-weight-medium;
     cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
     transition: all $motion-medium $motion-spring;
 
     &:hover {
@@ -226,5 +228,65 @@
 
     .titleOverlay {
         opacity: 0;
+    }
+}
+
+// View All Button
+.viewAllWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: $spacing-12;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out 1.6s, transform 0.8s ease-out 1.6s;
+
+    @include below($breakpoint-lg) {
+        margin-top: $spacing-10;
+    }
+
+    @include below($breakpoint-md) {
+        margin-top: $spacing-8;
+    }
+}
+
+.viewAllAnimate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.viewAllBtn {
+    padding: $spacing-3 $spacing-8;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    color: var(--color-text-white);
+    border-radius: $border-radius-lg;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $motion-medium $motion-spring;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+
+    @include below($breakpoint-md) {
+        padding: $spacing-3 $spacing-8;
+        font-size: $font-size-base;
+    }
+
+    &:hover {
+        background-color: transparent;
+        color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+        outline-offset: 4px;
     }
 }

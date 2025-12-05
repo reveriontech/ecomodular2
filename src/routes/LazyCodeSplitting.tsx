@@ -36,3 +36,8 @@ export const Home = lazy(() =>
 export const ContactUs = lazy(() =>
   lazyRetry(() => import(/* webpackChunkName: "contact-us-page" */ "../pages/ContactUs"))
 );
+
+// Buildings Page
+export const BuildingsPage = lazy(() =>
+  lazyRetry(() => import(/* webpackChunkName: "buildings-page" */ "../pages/BuildingsPage"))
+);
